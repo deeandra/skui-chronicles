@@ -1,0 +1,120 @@
+/*CSS for Login Page*/
+.page-login{
+    background-image: url('/public/images/pattern.png');
+    background-size: 300px;
+    background-position: center;
+    background-color: white;
+    height: 100%;
+    width:100%;
+}
+
+.bg-login {
+    text-align: center;  
+    position: relative;
+    width: 100%;
+    font-family: "Sen Regular";
+    font-size: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.section1{
+    padding-bottom: 25px;
+}
+
+.welcome {
+    font-family: "Rose Knight Regular";
+    font-size: 70px;
+    color: #363e51;
+    margin: 0;
+}
+
+.input-box{
+    margin: 0.5% 0;
+    padding: 8px 0 8px 20px;
+    width: 70%;
+    font-family: "Sen Regular";
+    font-size: 12px;
+    background-color: #e6e6e6;
+    border-color: #beba94;
+    border-width: 2px solid;
+}
+
+.login{
+    margin: 0.5% 0;
+    padding: 8px 0;
+    width: 130px;
+    font-size: 14px;
+    text-align: center;
+    font-family: "Playfair Display Italic";
+    background-image: linear-gradient(to right, #363e51, #393f4f,#363e51);
+    color: #ffffff;
+    cursor: pointer;
+    outline: 1px solid white;
+    outline-offset: -7px;
+    border-color: #b9b58f;
+    border-width: 2px solid;
+}
+
+.login:hover{
+    background-color: #363e51;
+}
+
+.login:active{
+    box-shadow: 0 1px #363e51;
+    transform: translate(-1px, 2px);
+}
+
+.register{
+    color: #3fa9f5;
+    text-decoration: none;
+    font-style: normal;
+}
+
+.home-summary {
+    font-family: "Sen Regular";
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+
+
+.skui-logo img{
+    width: 100%;
+    height: auto;
+}
+
+.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.90);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.flashlight {
+    height: 100%;
+    width: 100%;
+    background-image: url('/public/images/zmyslownik-biruputih.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: 10;
+}
+
+.flashlight-background {
+    background-image: url('/public/images/zmyslownik-biruputih.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%; 
+    position: relative;
+    cursor: none;
+}

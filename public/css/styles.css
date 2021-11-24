@@ -1,0 +1,146 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    background-color: rgb(29, 29, 29);
+    position: fixed;
+    overflow: hidden;
+}
+
+/* .block-container{
+    width: 100vw;
+    height: 100%;
+    position: fixed;
+} */
+
+.blocks {
+    position: absolute;
+    max-width: 100vw;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+#left-block, #right-block{
+    overflow: hidden;
+}
+
+@media (min-aspect-ratio: 3/2) and (orientation: landscape){
+    #left-block, #right-block{
+        /* flex: 1 0 auto; */
+        height: 100vh;
+        width: 50vw;
+        float: left;
+    }
+}
+
+@media (max-aspect-ratio: 1/1) and (min-aspect-ratio: 2/3){
+    #left-block, #right-block{
+        height: 50vh;
+        width: 100vw;
+        max-width: 50vh;
+        float: left;
+    }
+    .blocks{
+        transform: translate(-50%, 0);
+        left: 50%;
+    }
+}
+
+@media (max-aspect-ratio: 3/2) and (min-aspect-ratio: 1/1){
+    #left-block, #right-block{
+        height: 100vh;
+        width: 50vw;
+        max-height: 50vw;
+        float: left;
+        margin: auto;
+    }
+    .blocks{
+        transform: translate(0, -50%);
+        top: 50%;
+    }
+}
+
+@media (max-aspect-ratio: 2/3) and (orientation:portrait) {
+    .blocks {
+        min-width: 100vw;
+        height: 100%;
+    }
+    #left-block, #right-block{
+        /* flex: 1 0 auto; */
+        height: 50%;
+        max-height: 50%;
+        width: 100vw;
+        display: block;
+    }
+    /* #left-block{
+        clear: left;
+    }
+    #right-block{
+        float: left;
+    } */
+}
+
+#navbar {
+    position: absolute;
+    width: 100vw;
+    z-index: 99;
+}
+
+li {
+    list-style: none;
+  }
+  
+a {
+    text-decoration: none;
+}
+
+.column {
+    display: flex;
+}
+
+.row {
+    display: flex;
+    padding-top: 10px;
+}
+
+.bg1 {
+    text-align: left;
+}
+
+.bg2 {
+    margin-left: auto; 
+    margin-right: 0;
+}
+
+.column li {
+    height: 40px;
+    line-height: 43px;
+    margin: 0px;
+    padding: 0px 30px;
+    display: flex;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sc {
+    font-family: "Playfair Display SC Bold";
+    font-size: 20px;
+    color: black;
+}
+
+.right-nav, .left-nav {
+    display: flex;
+    font-family: "Sen Regular";
+    font-size: 18px;
+}
+
+.right-nav li {
+    color: white;
+}
+
+
+.left-nav li {
+    color: black;
+}

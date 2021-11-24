@@ -1,0 +1,156 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.container{
+    background-image: url('background.png'); 
+    background-repeat: repeat;
+    width: 100%;
+    height: 100vh;  
+    background-size: 300px;
+    text-align: center;
+}
+
+.achievement{
+    width: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}  
+
+.top-symbol img{
+      width:500px;
+}
+
+.achievement hr{
+    border-top: 1px solid #b48130;
+    width:450px;
+    
+}
+
+.achievement p{
+    
+    position: relative;
+    font-size: 15px;
+    font-family: "Playfair Display Regular";
+    color: #56481f;
+    line-height: 17px;
+    margin-bottom:15px;
+    margin-top:30px;
+    left : 30%;
+    transform: translateX(-40%); 
+}
+
+.progress1 p{
+    margin-top:10px;
+}
+
+.achievement h6{
+    font-family: "Sen Regular";
+    position: absolute;
+    text-align: center;
+    color: #56481f;
+    opacity: 0.8;
+}
+
+.progress3 h6{
+    position:absolute;
+    left:50%;
+    opacity: 0.8;
+    transform: translateX(-40%);
+}
+
+.down-symbol img{
+    transform: rotate(180deg);
+    width:500px;
+    padding :30px;
+}
+  
+input{
+    width:150px;
+    margin-top:3px;
+    padding:10px;
+}
+  
+.achievement-board{
+    width:200px;
+    padding:15px;
+    margin-bottom: 10px;
+    font-size:18px;
+    text-align: center;
+    font-family: "Playfair Display Italic";
+    background-image:linear-gradient(to right, #111723, #333a4d, #111723);
+    color:#ffffff;
+    cursor:pointer;
+    outline: 1px solid #b48130;
+    outline-offset: -10px;  
+}
+
+.bar{
+    background: #e5dfba;
+    display:flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: 18px;
+    border: 5px solid #e5dfba;
+    border-radius: 30px;
+    overflow: hidden;
+    width:420px;
+    left : 80%;
+    text-align: center;
+    outline: 1px solid #ce953a;
+}
+
+.bar span{
+    height: 18px;
+    float : left;
+    text-align: center;
+    border-radius: 30px;
+    background-image:linear-gradient(to right, #aa7c1a, #a76421, #9e4b23, #94222b);
+}
+
+.topic1{
+    width:70%;
+    animation: topic1 2s;
+}
+
+.topic2{
+    width: 100%;
+    animation: topic2 2s;
+}
+
+.topic3{
+    width: 70%;
+    animation: topic3 2s;
+}
+
+@keyframes topic1{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 70%;
+    }
+}
+
+@keyframes topic2{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+@keyframes topic3{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 70%;
+    }
+}
+

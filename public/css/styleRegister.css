@@ -1,0 +1,73 @@
+/*CSS for Register Page*/
+.page-login{
+    background-image: url('pattern.png');
+    background-size: 300px;
+    background-position: center;
+    height: 100vh;
+    width:100%;
+}
+
+.bg-login {
+    text-align: center;  
+    position: relative;
+    width: 100%;
+    font-family: "Sen Regular";
+    font-size: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.section1{
+    padding-bottom: 25px;
+}
+
+.welcome {
+    font-family: "Rose Knight Regular";
+    font-size: 50px;
+    color: #363e51;
+    margin: 0;
+}
+
+.input-box{
+    margin: 20px 0;
+    padding: 8px 0 8px 20px;
+    width: 350px;
+    font-family: "Sen Regular";
+    font-size: 12px;
+    background-color: #e6e6e6;
+    border-color: #beba94;
+    border-width: 2px solid;
+}
+
+.login{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    width: 130px;
+    font-size: 14px;
+    text-align: center;
+    font-family: "Playfair Display Italic";
+    background-color: #363e51;
+    color: #ffffff;
+    cursor: pointer;
+    outline: 1px solid white;
+    outline-offset: -7px;
+    border-color: #b9b58f;
+    border-width: 2px solid;
+}
+
+.login:hover{
+    background-color: #363e51;
+}
+
+.login:active{
+    box-shadow: 0 1px #363e51;
+    transform: translate(-1px, 2px);
+}
+
+.register, .sign-in{
+    color: #3fa9f5;
+    text-decoration: none;
+    font-style: normal;
+}

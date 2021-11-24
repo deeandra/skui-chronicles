@@ -1,0 +1,73 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.container{
+    background-image: url('background.png'); 
+    background-repeat: repeat;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    background-size: 300px;
+    outline: 2px solid #ce953a;
+    outline-offset: -20px;  
+}
+
+.wrapper{
+    width: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} 
+
+input{
+    width:150px;
+    margin-top:3px;
+    padding:10px;
+}
+  
+.menu-button{
+    width:200px;
+    padding:10px;
+    font-size:17px;
+    text-align: center;
+    font-family: "Playfair Display Italic";
+    background-image:linear-gradient(to right, #5d001f, #8c1b2a, #5d001f    );
+    color:#ffffff;
+    cursor:pointer;
+    outline: 1px solid #ce953a;
+    outline-offset: -7px;  
+    margin-top : 10px;
+}
+
+.back-menu{
+    width:150px;
+    line-height: 30px;
+    font-size:20px;
+    text-align: center;
+    font-family: "Rose Knight Regular";
+    background-image:linear-gradient(to right, #111723, #333a4d, #111723);
+    color:#ffffff;
+    cursor:pointer;
+    outline: 1px solid #ce953a;
+    outline-offset: -8px;
+    position:absolute;
+    top:0;
+    right:0;  
+    border-bottom-left-radius: 25px 15px;
+    border-color: #ce953a ;
+}
+
+.top-symbol img{
+    width:300px;
+    margin-bottom:10px;
+}
+
+.down-symbol img{
+    transform: rotate(180deg);
+    width:300px;
+    margin-top: 20px;
+}

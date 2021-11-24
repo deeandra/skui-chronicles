@@ -1,0 +1,140 @@
+section{
+    background-color: #47121a;
+    background-size: 300px;
+    background-position: center;
+    height: 100vh;
+    width:100%;
+}
+
+.profile-container{
+    width: 1000px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
+    background-color: #f2efdc;
+    display: flex;
+    outline: 1px double;
+    outline-color: #aa7f19;
+    outline-offset: 40px;
+    box-shadow: 0 0 0 1px #aa7f19,
+                0 0 0 20px #f2efdc,
+                0 0 0 21.5px #aa7f19;
+}
+
+.profile-container::after{
+    display: flex;
+    clear: both;
+}
+
+.profile-leftBox{
+    width: 350px;
+    text-align: right;
+    padding: 30px 20px 0 0;
+    font-family: "Playfair Display Italic";
+    font-size: 25px;
+    color: #56481f;
+    border-right: 5px double #aa7f19;
+    margin: 20px 0;
+}
+
+.font1{
+    font-family: "Playfair Display Bold Italic";
+}
+
+.profile-rightBox{
+    width: 650px;
+    position: relative;
+    font-family: "Sen Regular";
+    color: #56481f;
+    padding: 30px 0 0 20px;
+    margin: 20px 0 20px 50px;
+}
+
+.box{
+    display: flex;
+}
+
+.font2{
+    font-family: "Playfair Display Italic";
+    font-size: 25px;
+}
+
+.font3{
+    color: #ae1811;
+}
+
+.sec1{
+    padding: 20px 0 0 15px;
+    width: 50px;
+    text-align: right;
+}
+
+.profile-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #d7c6bc;
+    border: 1.5px solid #aa7f19;
+}
+
+.sec2{
+    width: 555px;
+    padding: 20px 0 0 40px;
+}
+
+.sec2 p{
+    margin: 0;
+}
+
+label{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+    margin: 30px 0 20px 115px;
+    width: 400px;
+    line-height: 26px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+label input{
+    margin-left: 20px;
+    flex: 0 0 400px;
+}
+
+.input-box{
+    padding: 10px 0 10px 10px;
+    width: 800px;
+    font-family: "Sen Regular";
+    font-size: 14px;
+    background-color: #fdfaeb;
+    border: 1.3px solid #aa7f19;
+}
+
+.save{
+    margin-left: 100px;
+    margin-top: 25px;
+    padding: 8px 8px;
+    width: 110px;
+    font-size: 20px;
+    text-align: center;
+    font-family: "Playfair Display Italic";
+    background-image: linear-gradient(to right, #5d001f, #8c1b2a, #5d001f    );
+    color: #ffffff;
+    cursor:pointer;
+    outline: 1px solid #ce953a;
+    outline-offset: -7px;
+}
+
+.save:hover{
+    background-color: #5d001f; 
+}
+
+.save:active{
+    box-shadow: 0 1px #5d001f;
+    transform: translate(-1px, 2px);
+}

@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'Rose Knight Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rose Knight Regular'), url('RoseknightRegular-8ML5A.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Sen Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sen Regular'), url('Sen-Regular.woff') format('woff');
+}
+        
+@font-face {
+    font-family: 'Sen Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sen Bold'), url('Sen-Bold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Sen ExtraBold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sen ExtraBold'), url('Sen-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Playfair Display Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display Regular'), url('PlayfairDisplay-Regular.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Playfair Display Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display Italic'), url('PlayfairDisplay-Italic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Playfair Display Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display Bold'), url('PlayfairDisplay-Bold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Playfair Display Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display Bold Italic'), url('PlayfairDisplay-BoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Playfair Display Black';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display Black'), url('PlayfairDisplay-Black.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Playfair Display Black Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display Black Italic'), url('PlayfairDisplay-BlackItalic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Playfair Display SC Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display SC Regular'), url('PlayfairDisplaySC-Regular.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Playfair Display SC Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display SC Italic'), url('PlayfairDisplaySC-Italic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Playfair Display SC Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display SC Bold'), url('PlayfairDisplaySC-Bold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Playfair Display SC Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display SC Bold Italic'), url('PlayfairDisplaySC-BoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Playfair Display SC Black';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display SC Black'), url('PlayfairDisplaySC-Black.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Playfair Display SC Black Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Playfair Display SC Black Italic'), url('PlayfairDisplaySC-BlackItalic.woff') format('woff');
+}

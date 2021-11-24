@@ -1,0 +1,21 @@
+<div class="flashlight-background">
+    <div class="dark-overlay"></div>
+    <div class="skui-logo home-summary">
+        <img src="/public/images/Asset_8.png" alt="Skui Chronicles"></img>
+    </div>
+    <div id="flashlight" class="flashlight"></div>
+</div>
+
+<script>
+    $(window).mousemove(function(e) {
+        console.log(e.pageX);
+        try {
+            let x = e.pageX - $("#flashlight")[0].getBoundingClientRect().left;
+            let y = e.pageY - $("#flashlight")[0].getBoundingClientRect().top;
+            $("#flashlight").css({"clip-path": `circle(100px at ${x}px ${y}px)`});
+        }
+        catch(e) {
+            return;
+        }
+    });
+</script>
