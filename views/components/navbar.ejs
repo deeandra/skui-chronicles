@@ -8,8 +8,12 @@
             </div>
         </div>
         <div class="column bg2">
-            <div class="right-nav">
-                <a href="/login"><li>Login</li></a>
-            </div>
+            <% if (loggedin!=true) { %>
+                <div class="right-nav">
+                    <a href="/login"><li>Login</li></a>
+                </div>
+            <% } %>
+                
+            
         </div>
 </div>

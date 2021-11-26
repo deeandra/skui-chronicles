@@ -1,6 +1,8 @@
 <div class="flashlight-background">
     <div class="dark-overlay"></div>
-    <p class="home-summary">Strap on your seatbelt and get ready for a ride! Skui Chronicles will take you on a journey through time to let you relive history and hopefully, learn some valuable lessons along the way. As Theodore Roosevelt once said, "The more you know about the past, the better prepared you are for the future".</p>
+    <div class="summary-container">
+        <span class="home-summary">Strap on your seatbelt and get ready for a ride! Skui Chronicles will take you on a journey through time to let you relive history and hopefully, learn some valuable lessons along the way. As Theodore Roosevelt once said, "The more you know about the past, the better prepared you are for the future".</span>
+    </div>
     <div id="flashlight" class="flashlight"></div>
 </div>
 
@@ -15,5 +17,15 @@
         catch(e) {
             return;
         }
+    });
+    $(window).resize(function (){
+        $(".summary-container").textfill({
+            minFontPixels: 1,
+            changeLineHeight: true
+        }); 
+    })
+    $(".summary-container").textfill({
+        minFontPixels: 1,
+        changeLineHeight: true
     });
 </script>

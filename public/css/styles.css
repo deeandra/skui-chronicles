@@ -4,7 +4,7 @@ body {
     width: 100vw;
     height: 100vh;
     max-height: 100%;
-    background-color: rgb(29, 29, 29);
+    background-color: rgb(255, 233, 214);
     position: fixed;
     overflow: hidden;
 }
@@ -84,13 +84,13 @@ body {
 
 #navbar {
     position: absolute;
-    width: 100vw;
+    width: 100%;
     z-index: 99;
 }
 
 li {
     list-style: none;
-  }
+}
   
 a {
     text-decoration: none;

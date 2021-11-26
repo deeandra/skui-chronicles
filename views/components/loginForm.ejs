@@ -4,11 +4,13 @@
             <p class="welcome">Welcome</p>
             <p>Please log in to continue</p>
         </div>
-        <form>
-            <input class="input-box" ref={node => (this.identifier = node)} type="text" placeholder="username or email"></input><br></br>
-            <input class="input-box" ref={node => (this.password = node)} type="password" placeholder="password"></input><br></br>
+        <form action="/auth" method="POST">
+            <input class="input-box" type="text" placeholder="username or email" name="identifier"></input>
+            <br></br>
+            <input class="input-box" type="password" placeholder="password" name="password"></input>
+            <br></br>
             <input class="login" type="submit" value="Log in"></input>
         </form>
-        
+        <p><a class="sign-in" href="/register">or, create a new account</a></p>
     </div>
 </div>
