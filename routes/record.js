@@ -13,7 +13,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 
 // This section will help you get a list of all the documents.
-recordRoutes.route("/listAllStories").get(function (req, res) {
+recordRoutes.route("/api/listAllStories").get(function (req, res) {
     const dbConnect = dbo.getDb();
   
     dbConnect
@@ -25,7 +25,7 @@ recordRoutes.route("/listAllStories").get(function (req, res) {
       });
 });
 
-recordRoutes.route("/listAllUsers").get(function (req, res) {
+recordRoutes.route("/api/listAllUsers").get(function (req, res) {
   let db_connect = getDb();
   db_connect
     .collection("users")
@@ -37,7 +37,7 @@ recordRoutes.route("/listAllUsers").get(function (req, res) {
 });
 
 // This section will help you get a single record by id
-recordRoutes.route("/story/:id").get(function (req, res) {
+recordRoutes.route("/api/story/:id").get(function (req, res) {
   let db_connect = getDb();
   let myquery = { id: req.params.id};
   db_connect
@@ -48,7 +48,7 @@ recordRoutes.route("/story/:id").get(function (req, res) {
       });
 });
 
-recordRoutes.route("/play/:id/:chapterNumber").get(function (req, res) {
+recordRoutes.route("/api/play/:id/:chapterNumber").get(function (req, res) {
     let db_connect = getDb();
     let myquery = { 
         storyId: req.params.id, 

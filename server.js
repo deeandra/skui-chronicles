@@ -18,7 +18,6 @@ const { response } = require('express');
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-
 //express session
 var sess = {
   secret: process.env.SESSION_SECRET,
@@ -32,9 +31,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 app.use(session(sess));
 app.use(function(req, res, next) {
-  res.locals.loggedin = req.session.loggedin;
-  console.log("logged in: "+res.locals.loggedin);
-  next();
+    res.locals.loggedin = req.session.loggedin;
+    console.log("logged in: "+res.locals.loggedin);
+    next();
 });
 
 // use res.render to load up an ejs view file
@@ -45,48 +44,74 @@ app.get('/', function(req, res) {
 });
 
 app.get('/stories', function(req, res) {
-  res.render('pages/stories');
+    res.render('pages/stories');
 });
 
 app.get('/about', function(req, res) {
-  res.render('pages/about');
+    res.render('pages/about');
 });
 
 app.get('/login', function(req, res) {
-  res.render('pages/login');
+    res.render('pages/login');
 });
 
-app.post('/auth', function(req, res) {
-  const dbConnect = dbo.getDb();
+app.post('/login', function(req, res) {
+    const dbConnect = dbo.getDb();
 
-  dbConnect
-    .collection("users")
-    .findOne({$or: [{email: req.body.identifier}, {username: req.body.identifier}]}, function (err, result) {
-      if (err) throw err;
-      if(result===null){
-        res.send('Account doesn\'t exist'+req.body.identifier);
-        return;
-      }
-      else if (result.password==req.body.password){
-        req.session.loggedin = true;
-        req.session.username = result.username;
-        res.redirect('/');
-        return;
-      }
-      else{
-        res.send('Incorrect Password!');
-        return;
-      }
-    });
+    dbConnect
+      .collection("users")
+      .findOne({$or: [{email: req.body.identifier}, {username: req.body.identifier}]}, function (err, result) {
+        if (err) throw err;
+        if(result===null){
+          res.send('Account doesn\'t exist'+req.body.identifier);
+          return;
+        }
+        else if (result.password==req.body.password){
+          req.session.loggedin = true;
+          req.session.username = result.username;
+
+          let returnTo = '/'
+          if (req.session.returnTo) {
+            returnTo = req.session.returnTo;
+            delete req.session.returnTo;
+          }
+
+          res.redirect(returnTo);
+        }
+        else{
+          res.send('Incorrect Password!');
+          return;
+        }
+      });
 });
 
 app.get('/register', function(req, res) {
-  res.render('pages/register');
+    res.render('pages/register');
 });
 
 app.post('/register', function(req, res) {
-  
+    const dbConnect = dbo.getDb();
+
+    dbConnect
+      .collection("users")
+      .insertOne(req.body)
+      .then(result => {
+        res.redirect('/login')
+      })
+      .catch(error => console.error(error));
 });
+
+app.get('/play/:urlName/:chapterNumber', function(req, res) {
+    if(req.session.loggedin != true){
+      req.session.returnTo = `/play/${req.params.urlName}/${req.params.chapterNumber}`;
+      res.redirect('/login');
+    }
+    console.log(req.params.urlName, req.params.chapterNumber);
+    res.render('pages/game', {
+      urlName: req.params.urlName,
+      chapterNumber: req.params.chapterNumber
+    });
+})
 
 app.listen(port, function() {
     dbo.connectToServer(function (err) {
@@ -94,4 +119,4 @@ app.listen(port, function() {
      
       });
     console.log(`Server is running on port: ${port}`);
-})
+});

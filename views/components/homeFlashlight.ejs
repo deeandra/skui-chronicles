@@ -7,6 +7,11 @@
 </div>
 
 <script>
+    $(".summary-container").textfill({
+        minFontPixels: 1,
+        changeLineHeight: true
+    });
+
     $(window).mousemove(function(e) {
         console.log(e.pageX);
         try {
@@ -18,14 +23,11 @@
             return;
         }
     });
+    
     $(window).resize(function (){
         $(".summary-container").textfill({
             minFontPixels: 1,
             changeLineHeight: true
         }); 
     })
-    $(".summary-container").textfill({
-        minFontPixels: 1,
-        changeLineHeight: true
-    });
 </script>
