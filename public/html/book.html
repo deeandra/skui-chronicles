@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="/public/css/book.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      function closeWin() {
+        var someIframe = window.parent.document.getElementById('iframe-book');
+        $(someIframe).parent().hide();
+      }
+      $(window).dblclick(closeWin);
+    </script>
 </head>
 <body>
     <div class="cover">

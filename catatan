@@ -4,3 +4,4 @@ naration -> n
 blank -> b
 naration choice -> nc
 dialog choice -> udc / cdc
+change scene/setting -cs (buat ganti status monitor)

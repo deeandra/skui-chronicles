@@ -36,7 +36,7 @@
     width: 70%;
     font-family: "Sen Regular";
     font-size: 12px;
-    background-color: #e6e6e6;
+    background-color: #ffffff;
     border-color: #beba94;
     border-width: 2px solid;
 }
@@ -48,7 +48,7 @@
     font-size: 14px;
     text-align: center;
     font-family: "Playfair Display Italic";
-    background-image: linear-gradient(to right, #363e51, #393f4f,#363e51);
+    background-image: linear-gradient(to right, #192031, #41485c,#192031);
     color: #ffffff;
     cursor: pointer;
     outline: 1px solid white;
@@ -67,7 +67,7 @@
 }
 
 .register, .sign-in{
-    color: #3fa9f5;
+    color: #7395a8;
     text-decoration: none;
     font-style: normal;
 }

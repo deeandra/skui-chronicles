@@ -10,13 +10,6 @@
     z-index: 990
 }
 
-#x-button{
-    position:absolute;
-     top:0;
-     right:0;
-     z-index: 1000;
-}
-
 section {
     background-size: 300px;
     background-position: center;
@@ -127,7 +120,7 @@ section {
 
 .back-menu{
     width:30%;
-    height: 12%;
+    height: 11%;
     max-height: 45px;
     text-align: center;
     font-family: "Rose Knight Regular";
@@ -143,21 +136,23 @@ section {
     margin: 0;
     border-bottom-left-radius: 15px;
     border-color: #ce953a ;
+    border-right: 0;
+    border-top: 0;
 }
 
 .top-symbol img{
-    max-width:300px;
-    width:80%;
-    margin-bottom:10px;
+    margin-bottom:5px;
 }
 
 .down-symbol img{
     transform: rotate(180deg);
-    max-width:300px;
-    width:80%;
     margin-top: 20px;
 }
 
+.border img{
+    max-width:300px;
+    width:60%;
+}
 
 input{
     width: 20%;

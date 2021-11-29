@@ -16,18 +16,26 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
   background-color: var(--body-bg);
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .cover {
-  
   width: calc(var(--baseline) * 60);
   height: calc(var(--baseline) * 42.6);
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
@@ -39,6 +47,7 @@ body {
   display: flex;
   perspective: 1200px;
 }
+
 .book__page {
   position: relative;
   width: 50%;

@@ -78,16 +78,13 @@ app.post('/login', function(req, res) {
           }
 
           res.redirect(returnTo);
+          return;
         }
         else{
           res.send('Incorrect Password!');
           return;
         }
       });
-});
-
-app.get('/book', function(req, res) {
-  res.render('pages/book');
 });
 
 app.get('/register', function(req, res) {
@@ -102,14 +99,14 @@ app.post('/register', function(req, res) {
       .insertOne(req.body)
       .then(result => {
         res.redirect('/login')
-      })
-      .catch(error => console.error(error));
+      });
 });
 
 app.get('/play/:urlName/:chapterNumber', function(req, res) {
     if(req.session.loggedin != true){
       req.session.returnTo = `/play/${req.params.urlName}/${req.params.chapterNumber}`;
       res.redirect('/login');
+      return;
     }
 
     const dbConnect = dbo.getDb();
