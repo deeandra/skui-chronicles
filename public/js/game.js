@@ -1,10 +1,11 @@
 $(document).ready(function() {
 
-    const elemenTeks = $('#tulisan')[0]
-    const elemenPilihan = $('#pilihan')[0]
-    
+    const elemenTeks = $('#text')[0]
+    const elemenPilihan = $('#choices')[0]
+    var chapterPlay = JSON.parse($('#variableJSON').text());
+
     let state = {}
-    const namaUser = 'didi'
+    const namaUser = playerName;
     
     function mulaiGame() {
         //halamanAwal()
@@ -17,62 +18,63 @@ $(document).ready(function() {
     }
     
     function cetakNode(idNode, iArrayTeks) {
-        $('#container-game').children().hide()
-        $('#pilihan').hide()
-        $('#gambar, #nama, #teks, #pilihan, #container-game').removeClass().off('click')
+        $('#container-display').children().hide();
+        $('#choices').hide()
+        $('.box-chara, .box-name, #text, #choices, #container-display').removeClass().off('click')
     
-        const nodeIni = cerita.find(nodeIni => nodeIni.id === idNode)
-        let iniArray = $.isArray(nodeIni.teks)
+        const thisNode = chapterPlay.find(thisNode => thisNode.id === idNode)
+        let isArray = $.isArray(thisNode.text);
+
         
-        // while (elemenPilihan.firstChild){
-        //     elemenPilihan.removeChild(elemenPilihan.firstChild)
-        // }
-    
-        $('.btn-pilihan').remove()
-    
-        if(nodeIni.bg){
-            $('#container-game').css('background-image', 'url("' + nodeIni.bg + '")')
+        while (elemenPilihan.firstChild){
+            elemenPilihan.removeChild(elemenPilihan.firstChild)
         }
     
-        if((!iniArray && nodeIni.teks !== '') || (iniArray && nodeIni.teks[iArrayTeks] !== '')  || nodeIni.pilihan !== undefined){
-            $('#teks').show()
-            if(nodeIni.gambar){
-                $('#gambar').show().css('background-image', 'url("' + nodeIni.gambar + '")')
-                if(nodeIni.tipe === 'dialog-user'){
-                    $('#gambar').addClass('user')
+        $('.btn-choices').remove()
+    
+        if(thisNode.background){
+            $('#container-display').css('background-image', 'url("' + thisNode.background+ '")');
+        }
+    
+        if((!isArray && thisNode.text !== '') || (isArray && thisNode.text[iArrayTeks] !== '')  || thisNode.pilihan !== undefined){
+            $('#text').show();
+            if(thisNode.charaImg){
+                $('.box-chara').show().css('background-image', 'url("' + thisNode.charaImg + '")')
+                if(thisNode.type === 'user-dialog'){
+                    $('.box-chara').addClass('user')
                 }
                 else {
-                    $('#gambar').addClass('karakter')
+                    $('.box-chara').addClass('character')
                 }
             }
-            if(nodeIni.nama || nodeIni.tipe === 'dialog-user'){
-                $('#teks').addClass('dialog')
-                if(nodeIni.tipe === 'dialog-user'){
-                    $('#nama').show().text(namaUser).addClass('user')
+            if(thisNode.nama || thisNode.tipe === 'dialog-user'){
+                $('#text').addClass('dialog')
+                if(thisNode.tipe === 'dialog-user'){
+                    $('.box-name').show().text(namaUser).addClass('user')
                 }
                 else {
-                    $('#nama').show().text(nodeIni.nama).addClass('karakter')
+                    $('.box-name').show().text(thisNode.nama).addClass('karakter')
                 }
             }
-            if(iniArray){
-                $('#tulisan').text(nodeIni.teks[iArrayTeks]) 
+            if(isArray){
+                $('#tulisan').text(thisNode.text[iArrayTeks]) 
             }
             else{
-                $('#tulisan').text(nodeIni.teks)
+                $('#tulisan').text(thisNode.text)
             }  
         }
     
-        if(nodeIni.pilihan === undefined) {
-            $('#container-game').click(function() {
-                pindahNodeorIndeks(nodeIni, iArrayTeks)
+        if(thisNode.pilihan === undefined) {
+            $('#container-display').click(function() {
+                pindahNodeorIndeks(thisNode, iArrayTeks)
             })
         }
         else {
-            $('#pilihan').show()
-            nodeIni.pilihan.forEach(option => {
+            $('#choices').show()
+            thisNode.pilihan.forEach(option => {
                 if (validasiPilihan(option)) {
                     const button = document.createElement('button')
-                    button.innerText = option.teks
+                    button.innerText = option.text
                     button.classList.add('btn-pilihan')
                     button.addEventListener('click', () => prosesPilihan(option))
                     elemenPilihan.appendChild(button)
@@ -82,19 +84,19 @@ $(document).ready(function() {
     
     }
     
-    //fungsi ini buat ngakses indeks array teks node cerita
-    function pindahNodeorIndeks(nodeIni, iArrayTeks) {
-        let iniArray = $.isArray(nodeIni.teks)
+    //fungsi ini buat ngakses indeks array text node cerita
+    function pindahNodeorIndeks(thisNode, iArrayTeks) {
+        let isArray = $.isArray(thisNode.text)
         let i = iArrayTeks
         i++
-        if(iniArray && i < nodeIni.teks.length){
-            cetakNode(nodeIni.id, i)
+        if(isArray && i < thisNode.text.length){
+            cetakNode(thisNode.id, i)
         }
         else{
-            if(nodeIni.next === undefined){
-                nodeIni.next = nodeIni.id + 1
+            if(thisNode.next === undefined){
+                thisNode.next = thisNode.id + 1
             }
-            cetakNode(nodeIni.next, 0)
+            cetakNode(thisNode.next, 0)
         }
     }
     
@@ -111,5 +113,6 @@ $(document).ready(function() {
         //set state akibat pilihan ini
         cetakNode(option.next)
     }
+    
     
 });

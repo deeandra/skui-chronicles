@@ -1,11 +1,35 @@
-<section>
-    <div class="container-Visnov">
+<section class="section-general">
+    <div id="container-display">
         <div class="box-chara"></div>
         <div class="box-name">
-            <h1>Agent Z</h1>
+            <span id="nama">Agent Z</span>
         </div>
         <div class="box-bubble">
-            <p>Sorry, but I gotta go. See you later partner</p>
+            <span id="text">Sorry, but I gotta go. See you later partner</span>
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function() {
+        function resizeFont(){
+            let boxNameWidth = $(".box-name").width();
+            let boxBubbleWidth = $(".box-bubble").width();
+            let nameFontSize = boxNameWidth/5;
+            if(nameFontSize>14){
+                nameFontSize = 14;
+            }
+            let bubbleFontSize = boxBubbleWidth/15;
+            if(bubbleFontSize>14){
+                bubbleFontSize = 14;
+            }
+            $(".box-name").css("font-size", `${nameFontSize}px`);
+            $(".box-bubble").css("font-size", `${bubbleFontSize}px`);
+
+            // let positionBubble = $(".box-bubble").offset().left-$(".container").offset().left;
+            // $(".box-name").css("left", `${positionBubble.left}px`);
+        }
+        resizeFont();
+        $(window).resize(resizeFont);
+    });
+</script>

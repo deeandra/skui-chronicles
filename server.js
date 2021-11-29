@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(session(sess));
 app.use(function(req, res, next) {
     res.locals.loggedin = req.session.loggedin;
-    console.log("logged in: "+res.locals.loggedin);
+    res.locals.playerName = req.session.name;
     next();
 });
 
@@ -69,6 +69,7 @@ app.post('/login', function(req, res) {
         else if (result.password==req.body.password){
           req.session.loggedin = true;
           req.session.username = result.username;
+          req.session.name = result.name;
 
           let returnTo = '/'
           if (req.session.returnTo) {
@@ -83,6 +84,10 @@ app.post('/login', function(req, res) {
           return;
         }
       });
+});
+
+app.get('/book', function(req, res) {
+  res.render('pages/book');
 });
 
 app.get('/register', function(req, res) {
@@ -106,12 +111,32 @@ app.get('/play/:urlName/:chapterNumber', function(req, res) {
       req.session.returnTo = `/play/${req.params.urlName}/${req.params.chapterNumber}`;
       res.redirect('/login');
     }
-    console.log(req.params.urlName, req.params.chapterNumber);
-    res.render('pages/game', {
-      urlName: req.params.urlName,
-      chapterNumber: req.params.chapterNumber
+
+    const dbConnect = dbo.getDb();
+    let myquery = { 
+      urlName: req.params.urlName
+    };
+    var getStoryId;
+    dbConnect
+      .collection("stories")
+      .findOne(myquery, function (err, result) {
+        if (err) throw err;
+        getStoryId = result.id;
     });
-})
+    myquery = { 
+      storyId: getStoryId, 
+      number: req.params.chapterNumber
+    };
+    var chapterPlay;
+    dbConnect
+        .collection("chapters")
+        .findOne(myquery, function (err, result) {
+          if (err) throw err;
+          chapterPlay = result;
+    });
+
+    res.render('pages/game', { chapterPlay: chapterPlay });
+});
 
 app.listen(port, function() {
     dbo.connectToServer(function (err) {

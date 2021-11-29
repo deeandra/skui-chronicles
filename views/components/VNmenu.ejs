@@ -1,11 +1,11 @@
-<section>
+<section class="section-general">
     <div class="back">
-        <input class="back-menu" type="submit" value="Back"></input>  
+        <input class="back-menu" type="submit" value="Back" id="back"></input>  
     </div>
-        <div class="container-menuVisnov">
+        <div class="container-vn-kanan">
             <div class="wrapper">
-                <div class="top-symbol-menuVisnov">
-                    <img src='/public/img/border.png' alt="border-simbol"></img>
+                <div class="top-symbol">
+                    <img src="/public/images/border.png" alt="border-simbol"></img>
                 </div>
                 <div class="button1">
                     <input class="menu-button" type="submit" value="Flashcards"></input>
@@ -17,11 +17,26 @@
                     <input class="menu-button" type="submit" value="Save & Quit"></input>
                 </div>
                 <div class="button4">
-                    <input class="menu-button" type="submit" value="Mission"></input>
+                    <input class="menu-button" id="mission" type="submit" value="Mission"></input>
                 </div>
-                <div class="down-symbol-menuVisnov">
-                    <img src='/public/img/border.png' alt="border-simbol"></img>
+                <div class="down-symbol">
+                    <img src="/public/images/border.png" alt="border-simbol"></img>
                 </div>
             </div>
         </div>
 </section>
+
+<script>
+    $(document).ready(function() {
+        function resizeFontMenu(){
+            let backButtonWidth = $(".back-menu").width();
+            let backFontSize = backButtonWidth/5.5;
+            if(backFontSize>20){
+                backFontSize = 20;
+            }
+            $(".back-menu").css("font-size", `${backFontSize}px`);
+        }
+        resizeFontMenu();
+        $(window).resize(resizeFontMenu);
+    });
+</script>

@@ -1,15 +1,37 @@
-<section>        
+ <section class="section-general"> 
     <div class="back">
-<input class="back-menu" type="submit" value="Back"></input>
+<input class="back-menu" id="menu" type="submit" value="Menu"></input>
 </div>
-<div class="container">
+<div class="container-vn-kanan">
     <div class="wrapper">
-        <div class="gambar">
-            <img src='/public/img/bajaj.png' alt="gambar-bajaj" class="bajaj"></img>
-            <a href='#'>
-            <img src='/public/img/play_button.png' alt="gambar-play-button" class="play_button"></img>
-            </a>
-        </div>
+        <section id="section-next-button">
+            <div class="next-button">
+                <img src='/public/images/bajaj.png' alt="gambar-bajaj" class="bajaj"></img>
+                <a href='#'>
+                <img src='/public/images/play_button.png' alt="gambar-play-button" class="play_button"></img>
+                </a>
+            </div>
+        </section>
+        <section id="section-choices">
+            <div id="choices">
+            </div>
+        </section>
     </div>
 </div>
-</section>  
+</section> 
+
+<script>
+    $(document).ready(function() {
+        $("#section-choices").hide();
+        function resizeFontMenu(){
+            let backButtonWidth = $(".back-menu").width();
+            let backFontSize = backButtonWidth/5.5;
+            if(backFontSize>20){
+                backFontSize = 20;
+            }
+            $(".back-menu").css("font-size", `${backFontSize}px`);
+        }
+        resizeFontMenu();
+        $(window).resize(resizeFontMenu);
+    });
+</script>
