@@ -3,70 +3,74 @@ body {
     padding: 0px;
 }
 
+.sc{
+    color: #56481f !important;
+}
 
 .container{
-    background-image: url('background.png'); 
+    background-image: url('/public/images/background.png'); 
     background-repeat: repeat;
     width: 100%;
-    height: 100vh;  
+    height: 100%;  
     background-size: 300px;
     text-align: center;
 }
 
 .achievement{
+    
     width: 100%;
     position: relative;
-    top: 50%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -50%); 
+    
 }  
 
 .top-symbol img{
-      width:500px;
+      width:80%;
 }
 
 .achievement hr{
-    border-top: 1px solid #b48130;
-    width:450px;
-    
+    border-top: 0.5px solid #b48130;
+    width:80%;
+    margin-top: 20px;
+    position: relative;
 }
 
 .achievement p{
     
     position: relative;
-    font-size: 15px;
+    font-size: 12px;
     font-family: "Playfair Display Regular";
     color: #56481f;
     line-height: 17px;
-    margin-bottom:15px;
-    margin-top:30px;
+    margin-bottom:5px;
     left : 30%;
     transform: translateX(-40%); 
 }
 
-.progress1 p{
-    margin-top:10px;
+.progress p{
+    margin-top:1px;
 }
 
-.achievement h6{
+.chapters{
+    font-size: 9px;
     font-family: "Sen Regular";
     position: absolute;
     text-align: center;
     color: #56481f;
     opacity: 0.8;
-}
-
-.progress3 h6{
     position:absolute;
     left:50%;
     opacity: 0.8;
-    transform: translateX(-40%);
+    transform: translateX(-50%);
 }
 
 .down-symbol img{
     transform: rotate(180deg);
-    width:500px;
-    padding :30px;
+    width:80%;
+    margin :20px;
+    margin-bottom: 0px;
 }
   
 input{
@@ -76,17 +80,17 @@ input{
 }
   
 .achievement-board{
-    width:200px;
-    padding:15px;
+    width:50%;
+    padding:10px;
     margin-bottom: 10px;
-    font-size:18px;
+    font-size:14px;
     text-align: center;
     font-family: "Playfair Display Italic";
     background-image:linear-gradient(to right, #111723, #333a4d, #111723);
     color:#ffffff;
     cursor:pointer;
     outline: 1px solid #b48130;
-    outline-offset: -10px;  
+    outline-offset: -7px;  
 }
 
 .bar{
@@ -94,30 +98,30 @@ input{
     display:flex;
     margin-left: auto;
     margin-right: auto;
-    height: 18px;
+    height: 10px;
     border: 5px solid #e5dfba;
     border-radius: 30px;
     overflow: hidden;
-    width:420px;
+    width:65%;
     left : 80%;
     text-align: center;
     outline: 1px solid #ce953a;
 }
 
 .bar span{
-    height: 18px;
+    height: 10px;
     float : left;
     text-align: center;
     border-radius: 30px;
     background-image:linear-gradient(to right, #aa7c1a, #a76421, #9e4b23, #94222b);
 }
 
-.topic1{
+.topic{
     width:70%;
-    animation: topic1 2s;
+    animation: topic 2s;
 }
 
-.topic2{
+/* .topic2{
     width: 100%;
     animation: topic2 2s;
 }
@@ -125,9 +129,9 @@ input{
 .topic3{
     width: 70%;
     animation: topic3 2s;
-}
+} */
 
-@keyframes topic1{
+@keyframes topic{
     0%{
         width: 0%;
     }
@@ -136,7 +140,7 @@ input{
     }
 }
 
-@keyframes topic2{
+/* @keyframes topic2{
     0%{
         width: 0%;
     }
@@ -152,5 +156,7 @@ input{
     100%{
         width: 70%;
     }
-}
+} */
+
+
 
