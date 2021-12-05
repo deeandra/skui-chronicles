@@ -5,10 +5,10 @@ body {
 
 
 .container{
-    background-image: url('background.png'); 
+    background-image: url('/public/images/background.png'); 
     background-repeat: repeat;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-size: 300px;
 }
 
@@ -42,6 +42,10 @@ body {
 
 .menu-chap:hover {
     background-color: #ffffff;
+}
+
+.chapter-done{
+    background-color: rgb(51, 59, 59);
 }
 
 
