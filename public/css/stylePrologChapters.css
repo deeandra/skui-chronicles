@@ -1,0 +1,69 @@
+/* body{
+    background-color: black;
+} */
+.container-text-box{
+    background-color: black;
+    background-repeat: repeat;
+    width: 100%;
+    height: 100%;
+    
+}
+
+
+.text-box{
+    /* margin: 15% 0 0 10%; */
+    width: 75%;
+    height: 75%;
+    border-color: white;
+    /* border: 5px; */
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+}
+
+.text-box::-webkit-scrollbar {
+    display: none;
+  }
+
+.text-box h1{
+    font-family: "Rose Knight Regular";
+    color: #edebe3;
+    font-size: 25px;
+    
+}
+
+.text-box p{
+    font-family: "Sen Regular";
+    color: #edebe3;
+    font-size: 12px;
+    text-align: justify;
+}
+
+.triangle-button{
+    display: flex;
+    
+}
+
+.triangle-left{
+    width: 0;
+	height: 0;
+	border-top: 15px solid transparent;
+	border-right: 30px solid pink;
+	border-bottom: 15px solid transparent;
+    margin-right: 30%;
+    
+}
+
+.triangle-right {
+	width: 0;
+	height: 0;
+	border-top: 15px solid transparent;
+	border-left: 30px solid pink;
+	border-bottom: 15px solid transparent;
+    margin-left: 50%;
+    
+}
