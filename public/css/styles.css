@@ -2,18 +2,12 @@ body {
     margin: 0px;
     padding: 0px;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     max-height: 100%;
-    background-color: #fde1db;
+    background-color: #ffede9;
     position: fixed;
     overflow: hidden;
 }
-
-/* .block-container{
-    width: 100vw;
-    height: 100%;
-    position: fixed;
-} */
 
 .blocks {
     position: absolute;
@@ -28,14 +22,13 @@ body {
 
 @media (min-aspect-ratio: 3/2) and (orientation: landscape){
     #left-block, #right-block{
-        /* flex: 1 0 auto; */
         height: 100vh;
         width: 50vw;
         float: left;
     }
 }
 
-@media (max-aspect-ratio: 1/1) and (min-aspect-ratio: 2/3){
+@media (max-aspect-ratio: 1/1) and (min-aspect-ratio: 2/3) and (min-height: 600px) {
     #left-block, #right-block{
         height: 50vh;
         width: 100vw;
@@ -47,6 +40,7 @@ body {
         left: 50%;
     }
 }
+
 
 @media (max-aspect-ratio: 3/2) and (min-aspect-ratio: 1/1){
     #left-block, #right-block{
@@ -65,7 +59,7 @@ body {
 @media (max-aspect-ratio: 2/3) and (orientation:portrait) {
     .blocks {
         min-width: 100vw;
-        height: 100%;
+        height: 100vh;
     }
     #left-block, #right-block{
         height: 50%;
@@ -76,10 +70,22 @@ body {
     
 }
 
+/* @media (max-width: 450) and (max-height: 600){
+    .blocks {
+        min-width: 100vw;
+        height: 1000px;
+    }
+    #left-block, #right-block{
+        height: 500px;
+        width: 100vw;
+        display: block;
+    }
+} */
+
 #navbar {
     position: absolute;
     width: 100%;
-    z-index: 99;
+    z-index: 9999;
 }
 
 li {

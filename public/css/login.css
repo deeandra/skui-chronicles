@@ -8,7 +8,7 @@
     width:100%;
 }
 
-.bg-login {
+.container-login {
     text-align: center;  
     position: relative;
     width: 100%;
@@ -18,32 +18,41 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.container-signup{
+    top: 45%;
+}
 
-.section1{
-    padding-bottom: 25px;
+.section-login{
+    padding-bottom: 7px;
 }
 
 .welcome {
     font-family: "Rose Knight Regular";
     font-size: 3rem;
+    font-weight: 500;
+    text-shadow: 1px 1px #000000;
     color: #363e51;
     margin: 0;
+    margin-bottom: -10px;
 }
 
 .input-box{
-    margin: 0.5% 0;
+    margin: 0 0;
     padding: 8px 0 8px 20px;
-    width: 70%;
+    height: 20px;
+    width: 65%;
     font-family: "Sen Regular";
     font-size: 12px;
     background-color: #ffffff;
     border-color: #beba94;
     border-width: 2px solid;
+    border-radius: 20px;
 }
 
 .login{
-    margin: 0.5% 0;
-    padding: 8px 0;
+    margin: 0 0;
+    margin-top: 5px;
+    padding: 10px 0;
     width: 130px;
     font-size: 14px;
     text-align: center;

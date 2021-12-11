@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Edit Chapter</h1>
+
+<form action="/editchp" id="edit-chapter-form" method="post">
+  <label for="chapter">Chapter: </label>
+  <textarea id="chapter" name="chapter" rows="50" cols="70">
+    <%- JSON.stringify(chapter, undefined, 2) %> 
+  </textarea>
+    <br><br>
+  <input type="submit" value="Submit">
+</form>
+<script>
+  var storyId = '<%= storyId %>';
+  var chapterNumber = '<%= chapterNumber %>';
+  document.getElementById('edit-chapter-form').action = "/editchp/"+ storyId + "/" + chapterNumber;
+</script>
+</body>
+</html>

@@ -48,10 +48,10 @@ recordRoutes.route("/api/story/:id").get(function (req, res) {
       });
 });
 
-recordRoutes.route("/api/play/:id/:chapterNumber").get(function (req, res) {
+recordRoutes.route("/api/play/:urlName/:chapterNumber").get(function (req, res) {
     let db_connect = getDb();
     let myquery = { 
-        storyId: req.params.id, 
+        urlName: req.params.urlName, 
         number: req.params.chapterNumber
     };
     db_connect

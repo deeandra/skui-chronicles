@@ -2,16 +2,32 @@
 <html lang="en">
 <head>
     <%- include('../components/head'); %>
-    <meta name="theme-color" content="#5d001f">
-    <link rel="stylesheet" type="text/css" href="/public/css/styleKanan.css"/>
-    <link rel="stylesheet" type="text/css" href="/public/css/stylePrologChapters.css"/>
+    <meta name="theme-color" content="#242420">
+    <link rel="stylesheet" type="text/css" href="/public/css/stories.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/css/cards.css"/>
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.3.1/jquery.twbsPagination.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> -->
 </head>
 <body>
+    
 <div class="block-container">
 <div class="blocks">
-    <div id="left-block"><%- include('../components/listChapters'); %></div>
-    <div id="right-block"><%- include('../components/prologChapter'); %></div>
+    
+    <!-- <div id="navbar">
+        <%- include('../components/navbar'); %>
+    </div> -->
+    <div id="left-block"><%- include('../components/storyDisplay'); %></div>
+    <div id="right-block"><%- include('../components/storyChapters'); %></div>
 </div>
+</div>
+<div class="arrows">
+    <i class="arrow left"></i>
+    <i class="arrow right"></i>
 </div>
 </body>
 </html>
+
+<script>
+    
+</script>

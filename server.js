@@ -8,6 +8,7 @@ require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5003;
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded());
 // using app.use to serve up static CSS files in public/assets/ folder when /public link is called in ejs files
 app.use('/public', express.static('public'));
 app.use(require("./routes/record"));
@@ -41,6 +42,44 @@ app.get('/', function(req, res) {
     let _session=req.session.loggedin;
     res.render('pages/home');
     //res.render('components/VNdisplay');
+});
+
+app.get('/editchp/:storyId/:chapterNumber', function(req, res) {
+  const dbConnect = dbo.getDb();
+
+    let myquery = { 
+        storyId: req.params.storyId, 
+        number: req.params.chapterNumber
+    };
+    dbConnect
+        .collection("chapters")
+        .findOne(myquery, function (err, result) {
+          if (err) throw err;
+          var resChapter = result;
+          delete resChapter["_id"];
+          resChapter = JSON.parse(resChapter);
+          res.render('pages/editChapter', {
+            'chapter': resChapter,
+            'storyId': req.params.storyId,
+            'chapterNumber': req.params.chapterNumber
+          });
+        });
+});
+
+app.post('/editchp/:storyId/:chapterNumber', function(req, res) {
+  const dbConnect = dbo.getDb();
+
+    let myquery = { 
+        storyId: req.params.storyId, 
+        number: req.params.chapterNumber
+    };
+    dbConnect
+        .collection("chapters")
+        .updateOne(myquery, 
+          { $set: JSON.parse(req.body.chapter) },
+          { upsert: true }
+        );
+    res.redirect(`/editchp/${req.params.storyId}/${req.params.chapterNumber}`);
 });
 
 app.get('/stories', function(req, res) {
@@ -87,6 +126,13 @@ app.post('/login', function(req, res) {
       });
 });
 
+app.get('/logout', function(req, res) {
+  req.session.loggedin = false;
+  req.session.username = "";
+  req.session.name = "";
+  res.redirect("/");
+});
+
 app.get('/register', function(req, res) {
     res.render('pages/register');
 });
@@ -118,21 +164,18 @@ app.get('/play/:urlName/:chapterNumber', function(req, res) {
       .collection("stories")
       .findOne(myquery, function (err, result) {
         if (err) throw err;
-        getStoryId = result.id;
+        getStoryId = result["id"];
+        myquery = { 
+          storyId: getStoryId, 
+          number: req.params.chapterNumber
+        };
+        dbConnect
+            .collection("chapters")
+            .findOne(myquery, function (err, result) {
+              if (err) throw err;
+              res.render('pages/game', { "chapter": result });
+        });
     });
-    myquery = { 
-      storyId: getStoryId, 
-      number: req.params.chapterNumber
-    };
-    var chapterPlay;
-    dbConnect
-        .collection("chapters")
-        .findOne(myquery, function (err, result) {
-          if (err) throw err;
-          chapterPlay = result;
-    });
-
-    res.render('pages/game', { chapterPlay: chapterPlay });
 });
 
 app.listen(port, function() {

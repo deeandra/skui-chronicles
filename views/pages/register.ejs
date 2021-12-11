@@ -11,9 +11,20 @@
     <div id="navbar">
         <%- include('../components/navbar'); %>
     </div>
-    <div id="left-block"><%- include('../components/loginFlashlight'); %></div>
-    <div id="right-block"><%- include('../components/registerForm'); %></div>
+    <%- include('../components/registerForm'); %>
 </div>
 </div>
 </body>
 </html>
+<script>
+    $(document).ready(function() {
+        var blockHeight = $(".blocks").height();
+        var blockWidth = $(".blocks").width();
+        $(window).resize(function(){
+            if($(window).height() < 600){
+                $(".page-login").height(blockHeight).width(blockWidth);
+                $(".blocks").height(blockHeight).width(blockWidth);
+            }
+        })
+    });
+</script>

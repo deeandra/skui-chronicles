@@ -25,13 +25,17 @@
   user-select: none;
 }
 
+.nowrap{
+  white-space:nowrap
+}
+
 body {
   background-color: var(--body-bg);
   min-width: 100vw;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 

@@ -1,0 +1,40 @@
+.sm-wrapper{
+    width: 70%;
+    height: 70%;
+    display: flex;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#time-monitor, #story-progress{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+select{
+    font-family: "Sen Regular";
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: rgb(58, 42, 31);
+}
+
+.sm-label{
+    font-family: "Playfair Display Bold Italic";
+    font-size: 20px;
+    color: rgb(58, 42, 31);
+}
+
+.sm-info{
+    font-family: "Playfair Display Regular";
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: rgb(58, 42, 31);
+}

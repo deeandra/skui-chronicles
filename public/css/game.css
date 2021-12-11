@@ -1,7 +1,19 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
 .section-general{
     background-color: #101622;
     
 }
+
 
 #frame {
     width: 100%;
@@ -21,7 +33,7 @@ section {
 #container-display {
     width: 90%;
     height: 90%;
-    background: url('/public/images/background.jfif');
+    /* background: url('/public/images/background.jfif'); */
     background-size: cover;
     top: 50%;
     left: 50%;
@@ -35,7 +47,7 @@ section {
 .box-chara{
     width: 25%;
     height: 25%;
-    background: url('/public/images/cogan.png'), rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
     border: 2px solid #97721d;
     background-size: cover;
     margin: 20% 0 0 10%;
@@ -43,7 +55,8 @@ section {
 }
 
 .box-name{
-    width: 25%;
+    width: fit-content;
+    max-width: 50%;
     background-image: linear-gradient(#865f0f, #9c7315, #aa7f19);
     margin: 5% 0 0 10%;
     border: 2px solid #aa7f19;
@@ -62,9 +75,8 @@ section {
 }
 
 .box-bubble{
-    width: 65%;
-    height: 35%;
-    max-height: 15%;
+    width: 69%;
+    max-height: 30%;
     background-color: rgba(0, 0, 0, 0.8);
     padding: 5%;
     border: 2px solid #ad7b19;
@@ -72,6 +84,8 @@ section {
     outline-offset: -10px;
     position: relative;
     margin-left: 10%;
+    box-sizing: content-box;
+    padding-top: 10px;
     /* left: 50%;
     transform: translateX(-50%); */
     /* top: 65%;
@@ -104,6 +118,35 @@ section {
     transform: translate(-50%, -50%);
 } 
 
+.section-choices{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button{
+    text-align: center;
+    position: relative;
+}
+  
+.menu-chap{
+    width:300px;
+    padding:10px;
+    font-size:15px; 
+    font-family: "Sen Regular";
+    color:#ffffff;
+    cursor:pointer;
+    margin-top : 10px;
+    text-align: left;
+    background-color: #5d001f;
+    border-radius: 12px;
+
+}
+
+.menu-chap:hover {
+    background-color: #6b2a2a;
+    color: #ffffff;
+}
   
 .menu-button{
     width:200px;

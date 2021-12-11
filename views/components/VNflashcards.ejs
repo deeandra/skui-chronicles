@@ -3,11 +3,110 @@
         <input class="back-menu close-menu-option" type="submit" value="Close"></input>
     </div>
 <div class="container-vn-kanan">
-    <div class="wrapper">
+    <div class="flashcard-wrapper">
         <!-- isi flashcard taro bawah sini -->
+        
+            <div class="cardContainer inactive">
+                <div class="card">
+                    <div class="side frontside">
+                        <div class="cover-img" style="background-color: burlywood;">
+                            <h2>Penemu Nitroglycerin</h2>
+                        </div>
+                    </div>
+                    <div class="side backside">   
+                        <div class="desc">
+                            <h2>Ascanio Sobrero</h2>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="cardContainer inactive">
+                <div class="card">
+                    <div class="side frontside">
+                        <div class="cover-img" style=""></div>
+                    </div>
+                    <div class="side backside">   
+                        <div class="info">
+                            <div class="desc">
+                                <h2>Nobel</h2>
+                                <h4></h4>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="cardContainer inactive">
+                <div class="card">
+                    <div class="side frontside">
+                        <div class="cover-img" style=""></div>
+                    </div>
+                    <div class="side backside">   
+                        <div class="info">
+                            <div class="desc">
+                                <h2>Nobel</h2>
+                                <h4></h4>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="cardContainer inactive">
+                <div class="card">
+                    <div class="side frontside">
+                        <div class="cover-img" style=""></div>
+                    </div>
+                    <div class="side backside">   
+                        <div class="info">
+                            <div class="desc">
+                                <h2>Nobel</h2>
+                                <h4></h4>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="cardContainer inactive">
+                <div class="card">
+                    <div class="side frontside">
+                        <div class="cover-img" style=""></div>
+                    </div>
+                    <div class="side backside">   
+                        <div class="info">
+                            <div class="desc">
+                                <h2>Nobel</h2>
+                                <h4></h4>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            
+        
     </div>
 </div>
 </section> 
+
+<script>
+    const cards = document.querySelectorAll('.card');
+  
+    function transition() {
+      if (this.classList.contains('active')) {
+        this.classList.remove('active')
+      } else {
+        this.classList.add('active');
+      }
+    }
+  
+    cards.forEach(card => card.addEventListener('click', transition));
+  </script>
 
 <script>
     $(document).ready(function() {

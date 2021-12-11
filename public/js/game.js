@@ -2,10 +2,12 @@ $(document).ready(function() {
 
     const elemenTeks = $('#text')[0]
     const elemenPilihan = $('#choices')[0]
-    var chapterPlay = JSON.parse($('#variableJSON').text());
+    //const chapterData = JSON.parse($('#variableJSON').text());
+    const chapterData = chapter;
+    const nodes = chapterData['content'];
+    console.log(nodes);
 
     let state = {}
-    const namaUser = playerName;
     
     function mulaiGame() {
         //halamanAwal()
@@ -20,12 +22,10 @@ $(document).ready(function() {
     function cetakNode(idNode, iArrayTeks) {
         $('#container-display').children().hide();
         $('#choices').hide()
-        $('.box-chara, .box-name, #text, #choices, #container-display').removeClass().off('click')
     
-        const thisNode = chapterPlay.find(thisNode => thisNode.id === idNode)
+        const thisNode = nodes.find(node => node.id === idNode)
         let isArray = $.isArray(thisNode.text);
 
-        
         while (elemenPilihan.firstChild){
             elemenPilihan.removeChild(elemenPilihan.firstChild)
         }
@@ -37,51 +37,51 @@ $(document).ready(function() {
         }
     
         if((!isArray && thisNode.text !== '') || (isArray && thisNode.text[iArrayTeks] !== '')  || thisNode.pilihan !== undefined){
+            $('.box-bubble').show();
             $('#text').show();
             if(thisNode.charaImg){
                 $('.box-chara').show().css('background-image', 'url("' + thisNode.charaImg + '")')
-                if(thisNode.type === 'user-dialog'){
-                    $('.box-chara').addClass('user')
-                }
-                else {
-                    $('.box-chara').addClass('character')
-                }
+                $('.box-bubble').css("top", "0");
+                $('.box-bubble').css("transform", "translateY(0)");
             }
-            if(thisNode.nama || thisNode.tipe === 'dialog-user'){
-                $('#text').addClass('dialog')
-                if(thisNode.tipe === 'dialog-user'){
-                    $('.box-name').show().text(namaUser).addClass('user')
-                }
-                else {
-                    $('.box-name').show().text(thisNode.nama).addClass('karakter')
-                }
+            if(thisNode.tipe == "narasi" || !thisNode.nama){
+                $('.box-bubble').css("top", "50%");
+                $('.box-bubble').css("transform", "translateY(-50%)");
+            }
+            if(thisNode.nama){
+                $(".box-name").show();
+                $("#nama").text(thisNode.nama);
             }
             if(isArray){
-                $('#tulisan').text(thisNode.text[iArrayTeks]) 
+                $('#text').text(thisNode.text[iArrayTeks]) 
             }
             else{
-                $('#tulisan').text(thisNode.text)
+                $('#text').text(thisNode.text)
             }  
         }
     
         if(thisNode.pilihan === undefined) {
-            $('#container-display').click(function() {
+            $('.next-button').show()
+            $('.next-button').click(function() {
                 pindahNodeorIndeks(thisNode, iArrayTeks)
             })
         }
         else {
+            $('.next-button').hide()
+            $('.next-button').off('click')
+            $('#section-choices').show()
             $('#choices').show()
             thisNode.pilihan.forEach(option => {
                 if (validasiPilihan(option)) {
                     const button = document.createElement('button')
                     button.innerText = option.text
-                    button.classList.add('btn-pilihan')
+                    console.log("create button")
+                    button.classList.add('menu-chap')
                     button.addEventListener('click', () => prosesPilihan(option))
-                    elemenPilihan.appendChild(button)
+                    $('#choices').append(button)
                 }
             })
         }
-    
     }
     
     //fungsi ini buat ngakses indeks array text node cerita
@@ -111,8 +111,8 @@ $(document).ready(function() {
     
     function prosesPilihan (option) {
         //set state akibat pilihan ini
-        cetakNode(option.next)
+        cetakNode(option.next, 0)
     }
     
-    
+  mulaiGame();  
 });

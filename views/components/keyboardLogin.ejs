@@ -1,0 +1,14 @@
+<script>
+    $(document).ready(function() {
+        var blockHeight = $("#left-block").height();
+        var blockWidth = $("#left-block").width();
+       
+        $(window).resize(function(){
+            if($(window).height() < 600){
+                $("#left-block").height(blockHeight).width(blockWidth).html(rightBlock);
+                $("#right-block").height(blockHeight).width(blockWidth).html(leftBlock);
+                $(".blocks").css("max-height", blockHeight+"px").height(2*blockHeight).width(blockWidth);
+            }
+        })
+    });
+</script>

@@ -1,1 +1,1 @@
-GET http://localhost:5000/listAllStories
+GET http://localhost:5000/editchp/1/1

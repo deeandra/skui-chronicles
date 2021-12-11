@@ -3,8 +3,35 @@
         <input class="back-menu close-menu-option" type="submit" value="Close"></input>
     </div>
 <div class="container-vn-kanan">
-    <div class="wrapper">
+    <div class="sm-wrapper">
+        <!-- <label for="monitors">Choose a car:</label> -->
+
+        <select name="monitors" id="monitors">
+            <option value="time">Time Monitor</option>
+            <option value="story">Story Progress</option>
+        </select>
         <!-- isi status monitor taro bawah sini -->
+        <section id="time-monitor">
+            <div class="sm-group">
+                <div class="sm-label">Location</div>
+                <div class="sm-info sm-location">England</div>
+            </div>
+            <div class="sm-group">
+                <div class="sm-label">Year</div>
+                <div class="sm-info sm-year">1999</div>
+            </div>
+        </section>
+        <section id="story-progress">
+            <div class="sm-group">
+                <div class="sm-label">Topic</div>
+                <div class="sm-info sm-topic">The Explosive History of the Nobel Prizes</div>
+            </div>
+            <div class="sm-group">
+                <div class="sm-label sm-chp-num">Chapter: 1</div>
+                <div class="sm-info sm-chapter">Ascanio Sobrero and The Discovery of Nitroglycerine</div>
+            </div>
+        </section>
+        
     </div>
 </div>
 </section> 
@@ -22,5 +49,18 @@
         }
         resizeFontMenu();
         $(window).resize(resizeFontMenu);
+
+        $("#time-monitor").show();
+        $("#story-progress").hide();
+        $("select").on('change', function(){
+            if(this.value=="time"){
+                $("#story-progress").hide();
+                $("#time-monitor").show();
+            }
+            else if(this.value=="story"){
+                $("#time-monitor").hide();
+                $("#story-progress").show();
+            }
+        })
     });
 </script>

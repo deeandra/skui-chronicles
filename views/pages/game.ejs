@@ -3,6 +3,8 @@
 <head>
     <%- include('../components/head'); %>
     <meta name="theme-color" content="#ce953a">
+    <link rel="stylesheet" type="text/css" href="/public/css/flashcard.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/css/statusmonitor.css"/>
     <link rel="stylesheet" type="text/css" href="/public/css/game.css"/>
 </head>
 <body>
@@ -32,10 +34,11 @@
 </section>
 
 <span id='variableJSON' hidden>
-    <%= JSON.stringify(chapterPlay); %>
+    <%= JSON.stringify(chapter); %>
 </span>
 </body>
 </html>
+<script src="/public/js/dynamiteQuiz.js"></script>
 <script src="/public/js/game.js"></script>
 <script>
     $(document).ready(function() {

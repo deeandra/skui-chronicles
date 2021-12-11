@@ -117,3 +117,11 @@ img{
     background-position: center;
     z-index: 10;
 }
+
+.right-nav li {
+    color: rgb(58, 42, 31);
+}
+
+.left-nav li, .sc, .nav-link {
+    color: rgb(58, 42, 31);
+}

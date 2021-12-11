@@ -1,0 +1,48 @@
+<div class="cardContainer inactive">
+    <div class="card">
+        <div class="side front">
+            <div class="img" style=""></div>
+        </div>
+        <div class="side back">  
+            <div class="desc">
+                <h2>Nobel</h2>
+                <h4></h4>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div> 
+   
+ 
+
+<script>
+  const cards = document.querySelectorAll('.card');
+
+  function transition() {
+    if (this.classList.contains('active')) {
+      this.classList.remove('active')
+    } else {
+      this.classList.add('active');
+    }
+  }
+
+  cards.forEach(card => card.addEventListener('click', transition));
+</script>
+
+<!-- <div class="container-text-box">
+           
+    
+    <div class="text-box">
+                <h1>The History of Something</h1>
+                <p>
+                    
+                </p>
+                
+            </div>
+
+            <div class="triangle-button">
+                <div class="triangle-left"></div>
+                <div class="triangle-right"></div>
+            </div> 
+</div> -->
+        
