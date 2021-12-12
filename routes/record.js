@@ -42,6 +42,7 @@ recordRoutes.route("/db/startStory").post(function (req, res) {
                     storyId: req.body.storyId,
                     lastCompletedChapter: 0,
                     currentNode: 1,
+                    lastBg: "",
                     states: []
                   } 
                 } 
@@ -173,7 +174,8 @@ recordRoutes.route("/db/saveProgress").post(function (req, res) {
       },
       { $set:  
           {
-            "library.$.currentNode": req.body.userCurrentNode
+            "library.$.currentNode": req.body.userCurrentNode,
+            "library.$.lastBg": req.body.lastBg
           }
       
       }, 

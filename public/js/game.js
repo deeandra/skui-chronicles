@@ -16,7 +16,8 @@ $(document).ready(function() {
                 user: JSON.stringify(loggedUser),
                 storyId: storyId,
                 urlName: urlName,
-                chapterNumber: chapterNumber
+                chapterNumber: chapterNumber,
+                lastBg: lastBg
             },  
             success:function(response){  
                 if(response){  
@@ -25,6 +26,7 @@ $(document).ready(function() {
                     userCurrentNode = userProgress.currentNode;
                     console.log("CURRENT NODE"+userCurrentNode);
                     states = userProgress.states;
+                    $('#container-display').css('background-image', 'url("' + userProgress.lastBg+ '")');
                     cetakNode(parseInt(userCurrentNode), 0);
     
                 }else{  
@@ -80,9 +82,9 @@ $(document).ready(function() {
     
     function cetakNode(idNode, iArrayTeks) {
         $('#container-display').children().hide();
-        $('#choices').hide()
+        $('#choices').hide();
         
-        const thisNode = nodes.find(node => node.id == idNode)
+        const thisNode = nodes[idNode-1];
         let isArray = $.isArray(thisNode.text);
 
         while (elemenPilihan.firstChild){
@@ -133,19 +135,14 @@ $(document).ready(function() {
 
         if(thisNode.background){
             $('#container-display').css('background-image', 'url("' + thisNode.background+ '")');
-        }else{
-            let checkNodeBg = nodes.find(node => node.next == idNode);
-            while(!checkNodeBg.background){
-                checkNodeBg = nodes.find(node => node.next == checkNodeBg.id);
-            }
-            $('#container-display').css('background-image', 'url("' + checkNodeBg.background+ '")');
+            lastBg = thisNode.background;
         }
     
         if((!isArray && thisNode.text !== '') || (isArray && thisNode.text[iArrayTeks] !== '')  || thisNode.pilihan !== undefined){
             $('.box-bubble').show();
             $('#text').show();
             if(thisNode.charaImg){
-                $('.box-chara').show().css('background-image', 'url("' + thisNode.charaImg + '")')
+                $('.box-chara').show().css('background-image', 'url("' + thisNode.charaImg + '")');
                 $('.box-bubble').css("top", "0");
                 $('.box-bubble').css("transform", "translateY(0)");
             }
@@ -165,7 +162,7 @@ $(document).ready(function() {
             }  
         }
     
-        if(thisNode.pilihan === undefined) {
+        if(thisNode.pilihan == undefined) {
             $('.next-button').show()
             $('.next-button').click(function() {
                 pindahNodeorIndeks(thisNode, iArrayTeks)
@@ -191,14 +188,14 @@ $(document).ready(function() {
     
     //fungsi ini buat ngakses indeks array text node cerita
     function pindahNodeorIndeks(thisNode, iArrayTeks) {
-        let isArray = $.isArray(thisNode.text)
-        let i = iArrayTeks
-        i++
+        let isArray = $.isArray(thisNode.text);
+        let i = iArrayTeks;
+        i++;
         if(isArray && i < thisNode.text.length){
             cetakNode(thisNode.id, i)
         }
         else{
-            if(thisNode.next === undefined){
+            if(thisNode.next == undefined){
                 thisNode.next = thisNode.id + 1
             }
             userCurrentNode = thisNode.next;

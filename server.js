@@ -33,15 +33,8 @@ if (process.env.NODE_ENV === 'production') {
 app.use(session(sess));
 app.use(function(req, res, next) {
     res.locals.loggedin = req.session.loggedin;
-    res.locals.playerName = req.session.name;
-    res.locals.username = req.session.username;
     res.locals.user = req.session.user;
-    if(req.session.userStories == undefined){
-      res.locals.userStories = "[]";
-    }else{
-      res.locals.userStories = req.session.userStories;
-      console.log("hasil:"+res.locals.userStories);
-    }
+    res.locals.userStories = req.session.userStories;
     
     next();
 });
