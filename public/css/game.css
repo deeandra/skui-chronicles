@@ -130,22 +130,26 @@ section {
 }
   
 .menu-chap{
-    width:300px;
+    width:75%;
     padding:10px;
     font-size:15px; 
     font-family: "Sen Regular";
-    color:#ffffff;
+    color:#EEEAD0;
     cursor:pointer;
-    margin-top : 10px;
+    margin-top : 5px;
+    margin-bottom: 5px;
     text-align: left;
-    background-color: #5d001f;
+    background-color: #242420;
     border-radius: 12px;
-
+    outline-offset: 4px;
+    outline-width: 2px;
+    outline-color: #9A883D;
+    border-color: #9A883D;
+    border-width: 4px;
 }
 
 .menu-chap:hover {
-    background-color: #6b2a2a;
-    color: #ffffff;
+    background-color: #4A2729;
 }
   
 .menu-button{

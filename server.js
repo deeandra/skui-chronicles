@@ -122,8 +122,6 @@ app.post('/login', function(req, res) {
           req.session.name = result.name;
           req.session.user = JSON.stringify(result);
           req.session.userStories = JSON.stringify(result['library']);
-          console.log(result['library']);
-          console.log("us::"+req.session.userStories);
 
           let returnTo = '/'
           if (req.session.returnTo) {

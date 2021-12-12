@@ -16,7 +16,6 @@ const ObjectId = require("mongodb").ObjectId;
 recordRoutes.route("/db/startStory").post(function (req, res) {
     const dbConnect = dbo.getDb();
     const userData = JSON.parse(req.body.user);
-    console.log(userData.username);
     dbConnect
       .collection("users")
       .findOne(
@@ -27,8 +26,7 @@ recordRoutes.route("/db/startStory").post(function (req, res) {
         }, 
         function(err, result){
           if (err) throw err;
-          if(!result){
-            console.log("gada hasil"); 
+          if(!result){ 
             dbConnect
             .collection("users")
             .updateOne(
@@ -58,7 +56,6 @@ recordRoutes.route("/db/startStory").post(function (req, res) {
                   }, 
                   function(err, result){
                     let obj = result.library.find(x => x.storyId==req.body.storyId);
-                    console.log(JSON.stringify(obj));
                     res.json(JSON.stringify(obj));
                  });
               }
@@ -95,7 +92,6 @@ recordRoutes.route("/db/startStory").post(function (req, res) {
                     }, 
                     function(err, result){
                       let obj = result.library.find(x => x.storyId==req.body.storyId);
-                      console.log(JSON.stringify(obj));
                       res.json(JSON.stringify(obj));
                    });
                 }
@@ -111,7 +107,6 @@ recordRoutes.route("/db/startStory").post(function (req, res) {
                 }, 
                 function(err, result){
                   let obj = result.library.find(x => x.storyId==req.body.storyId);
-                  console.log(JSON.stringify(obj));
                   res.json(JSON.stringify(obj));
                });
             }
@@ -152,7 +147,6 @@ recordRoutes.route("/db/finishChapter").post(function (req, res) {
           }, 
           function(err, result){
             let obj = result.library.find(x => x.storyId==req.body.storyId);
-            console.log(JSON.stringify(obj));
             res.json(JSON.stringify(obj));
           });
       }
@@ -163,7 +157,7 @@ recordRoutes.route("/db/finishChapter").post(function (req, res) {
 recordRoutes.route("/db/saveProgress").post(function (req, res) {
   const dbConnect = dbo.getDb();
   const userData = JSON.parse(req.body.user);
-  
+  if(req.body.lastBg != null){
     dbConnect
     .collection("users")
     .updateOne(
@@ -190,11 +184,42 @@ recordRoutes.route("/db/saveProgress").post(function (req, res) {
           }, 
           function(err, result){
             let obj = result.library.find(x => x.storyId==req.body.storyId);
-            console.log(JSON.stringify(obj));
             res.json(JSON.stringify(obj));
           });
       }
     ); 
+  }
+  else{
+    dbConnect
+    .collection("users")
+    .updateOne(
+      {
+        username: userData.username,
+        email: userData.email,
+        library: { $elemMatch: {storyId: req.body.storyId} }
+      },
+      { $set:  
+          {
+            "library.$.currentNode": req.body.userCurrentNode
+          }
+      }, 
+      function(err, result){
+        dbConnect
+        .collection("users")
+        .findOne(
+          {
+            username: userData.username,
+            email: userData.email,
+            library: { $elemMatch: {storyId: req.body.storyId} }
+          }, 
+          function(err, result){
+            let obj = result.library.find(x => x.storyId==req.body.storyId);
+            res.json(JSON.stringify(obj));
+          });
+      }
+    ); 
+  }
+    
       
 });
 

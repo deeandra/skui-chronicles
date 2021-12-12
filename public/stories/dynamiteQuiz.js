@@ -20,6 +20,7 @@ dynamite[1] = {
                 "Hi, I will be this class' teaching assistant for today."
             ],
             charaImg: "/public/images/cogan.png",
+            background: "/public/images/classroom.jpg",
             nama: "Supervisor X",
             tipe: "dialog",
             next: 3

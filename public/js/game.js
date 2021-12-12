@@ -3,9 +3,21 @@ $(document).ready(function() {
     const elemenTeks = $('#text')[0]
     const elemenPilihan = $('#choices')[0]
     //const chapterData = JSON.parse($('#variableJSON').text());
-    const chapterData = dynamite[1];
+    var chapterData = {};
+    switch(urlName){
+        case 'prologue':
+            chapterData = prologue[parseInt(chapterNumber)];
+            break;
+        
+        case 'dynamite':
+            chapterData = dynamite[parseInt(chapterNumber)];
+            break;
+
+        default:
+            chapterData = prologue[parseInt(chapterNumber)];
+            break;
+    }
     const nodes = chapterData['content'];
-    console.log(nodes);
 
     function dbStartStory(){
         $.ajax({  
@@ -24,9 +36,11 @@ $(document).ready(function() {
                     console.log('penyesuaian db untuk memulai game berhasil');  
                     userProgress = JSON.parse(response);
                     userCurrentNode = userProgress.currentNode;
-                    console.log("CURRENT NODE"+userCurrentNode);
+                    console.log("CURRENT NODE="+userCurrentNode);
                     states = userProgress.states;
                     $('#container-display').css('background-image', 'url("' + userProgress.lastBg+ '")');
+                    getFlashcards();
+                    halamanAwal();
                     cetakNode(parseInt(userCurrentNode), 0);
     
                 }else{  
@@ -37,6 +51,7 @@ $(document).ready(function() {
                 console.log('server error occured')  
             }  
         });
+        return;
     }
       
 
@@ -57,9 +72,8 @@ $(document).ready(function() {
     }
     
     function mulaiGame() {
-        halamanAwal();
-        state = {}
         dbStartStory();
+        return;
     }
     
     function halamanAwal() {
@@ -76,7 +90,7 @@ $(document).ready(function() {
         $('.sm-topic').text(chapterData.storyTitle);
         $('.sm-chapter').text(chapterData.title);
         $('.sm-chp-num').text("Chapter: "+ chapterData.chapterNumber);
-        getFlashcards();
+        
         return;
     }
     
@@ -181,13 +195,13 @@ $(document).ready(function() {
                 if (validasiPilihan(option)) {
                     const button = document.createElement('button');
                     button.innerText = option.text;
-                    console.log("create button");
                     button.classList.add('menu-chap');
                     button.addEventListener('click', () => prosesPilihan(option));
                     $('#choices').append(button);
                 }
             })
         }
+        return;
     }
     
     //fungsi ini buat ngakses indeks array text node cerita
@@ -207,14 +221,15 @@ $(document).ready(function() {
             cetakNode(thisNode.next, 0);
             return;
         }
+        return;
     }
     
     function validasiPilihan (option) {
         if(option.butuh) {
-            
+            return false;
         }
         else {
-            return true
+            return true;
         }
     }
     
