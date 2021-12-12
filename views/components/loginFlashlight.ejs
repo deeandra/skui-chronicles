@@ -8,7 +8,6 @@
 
 <script>
     $(window).mousemove(function(e) {
-        console.log(e.pageX);
         try {
             let x = e.pageX - $("#flashlight")[0].getBoundingClientRect().left;
             let y = e.pageY - $("#flashlight")[0].getBoundingClientRect().top;

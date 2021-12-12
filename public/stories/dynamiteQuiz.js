@@ -1,7 +1,10 @@
-const chapter = {
+var dynamite=[];
+dynamite[0] = {};
+dynamite[1] = {
     id:"2-1",
     storyId: 2,
-    number: 1,
+    storyTitle: "The Explosive Origin of The Nobel Prizes",
+    chapterNumber: 1,
     title: "Ascanio Sobrero and The Discovery of Nitroglycerine",
     content: [
         {

@@ -38,9 +38,48 @@
 </span>
 </body>
 </html>
-<script src="/public/js/dynamiteQuiz.js"></script>
-<script src="/public/js/game.js"></script>
 <script>
+    var loggedUser = '<%- user %>'; 
+    loggedUser = JSON.parse(loggedUser);
+    console.log(loggedUser);
+    var username = loggedUser.username;
+    var urlName = '<%= urlName %>';
+    var storyId = '<%= storyId %>'; 
+    var chapterNumber = '<%= chapterNumber %>';
+
+    var userProgress;
+    var userCurrentNode;
+    var states = {};
+
+    function saveProgress(){
+        $.ajax({  
+            url:'/db/saveProgress',  
+            method:'post',  
+            dataType:'json',  
+            data:{
+                user: JSON.stringify(loggedUser),
+                storyId: storyId,
+                urlName: urlName,
+                chapterNumber: chapterNumber,
+                userCurrentNode: userCurrentNode
+            },  
+            success:function(response){  
+                if(response){  
+                    console.log('save berhasil');  
+                    userProgress = JSON.parse(response);
+                    userCurrentNode = userProgress.currentNode;
+                    states = userProgress.states;
+    
+                }else{  
+                    console.log('some error occurred try again');  
+                }  
+            },  
+            error:function(response){  
+                console.log('server error occured')  
+            }  
+        });
+    }
+
     $(document).ready(function() {
         $("#frame").hide();
         $(".section-right-vn").hide();
@@ -67,11 +106,15 @@
             $("#section-menu").show();
         });
         $("#save-quit").click(function() {
-            //save dlu (blom)
+            saveProgress();
             window.location.href = "/";
         });
         $("#mission").click(function() {
             $("#frame").show();
         });
     });
+
+    
 </script>
+<script src="/public/stories/dynamiteQuiz.js"></script>
+<script src="/public/js/game.js"></script>

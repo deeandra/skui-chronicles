@@ -5,3 +5,75 @@ blank -> b
 naration choice -> nc
 dialog choice -> udc / cdc
 change scene/setting -cs (buat ganti status monitor)
+add flashcard = fc
+finish = fin
+database
+
+functions:
+getFlashcard (sampai node tertentu)
+startStory (cek udah pernah maenin ni story blom, klo belom tambahin ke lib)
+updateProgress (storyId udah ada di library tp lastchp/currentnode ganti)
+
+jabarin krn otak dh gamuat:
+pas mulai game, cek dlu di library user ada object yang storyid nya sama kek yg lagi dimainin ga,
+    kalo ada:
+    -cek klo lastchpnya = currentchapter-1 maka update current node
+    -klo lastchp > currentchp-1 (brarti dia restart suatu chp) maka set lastchp jd current-1, trs set current node jd 1, trs apus smua state yg dichepter itu ke atas
+    kalo gaada:
+    buat object baru dalem library dengan storyid itu
+
+pas dalem game: 
+- tiap pindah node, update currentnode
+- pas finish chapter, jadiin chp tsb menjadi lastcompletedchp
+- jika nodenya ngasi state, maka tambahin object state ke dalem state=[]
+
+users collection
+{
+    _id:
+    username:
+    name:
+    email
+    password:
+    profilepict:
+    library:
+    [
+        {
+            storyId:
+            lastCompletedChapter:
+            currentNode:
+            states:
+            [
+                {stick: true, originChp: 1},
+                {plusHP: false}
+            ]
+        },
+        {
+            
+        }
+    ]
+},
+{
+    _id...
+}
+
+
+stories collection
+{
+    _id:
+    title:
+    desc:
+    chapters:
+    {
+        {
+            chapterNumber:
+            chapterTitle:
+            content:
+            {
+                
+            }
+        },
+        {
+
+        }
+    }
+}

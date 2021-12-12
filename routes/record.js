@@ -13,53 +13,224 @@ const ObjectId = require("mongodb").ObjectId;
 
 
 // This section will help you get a list of all the documents.
-recordRoutes.route("/api/listAllStories").get(function (req, res) {
+recordRoutes.route("/db/startStory").post(function (req, res) {
     const dbConnect = dbo.getDb();
+    const userData = JSON.parse(req.body.user);
+    console.log(userData.username);
+    dbConnect
+      .collection("users")
+      .findOne(
+        {
+          username: userData.username,
+          email: userData.email,
+          library: { $elemMatch: {storyId: req.body.storyId} }
+        }, 
+        function(err, result){
+          if (err) throw err;
+          if(!result){
+            console.log("gada hasil"); 
+            dbConnect
+            .collection("users")
+            .updateOne(
+              {
+                username: userData.username,
+                email: userData.email
+              },
+              { $push: 
+                { library: 
+                  {
+                    storyId: req.body.storyId,
+                    lastCompletedChapter: 0,
+                    currentNode: 1,
+                    states: []
+                  } 
+                } 
+              },
+              function(err, result){
+                dbConnect
+                .collection("users")
+                .findOne(
+                  {
+                    username: userData.username,
+                    email: userData.email,
+                    library: { $elemMatch: {storyId: req.body.storyId} }
+                  }, 
+                  function(err, result){
+                    let obj = result.library.find(x => x.storyId==req.body.storyId);
+                    console.log(JSON.stringify(obj));
+                    res.json(JSON.stringify(obj));
+                 });
+              }
+            );
+          }else{
+            let obj = result.library.find(x => x.storyId==req.body.storyId);
+            if(parseInt(obj.lastchp)>=parseInt(req.body.chapterNumber)){
+              var filtered = obj.states.filter(function(value, index, arr){ 
+                return parseInt(value.origin) <  parseInt(req.body.chapterNumber);
+              });
+              dbConnect
+              .collection("users")
+              .updateOne(
+                {
+                  username: userData.username,
+                  email: userData.email,
+                  library: { $elemMatch: {storyId: req.body.storyId} }
+                },
+                { $set: 
+                    {
+                      "library.$.lastCompletedChapter": (parseInt(req.body.chapterNumber)-1),
+                      "library.$.currentNode": 1,
+                      "library.$.states": filtered
+                    } 
+                },
+                function(err, result){
+                  dbConnect
+                  .collection("users")
+                  .findOne(
+                    {
+                      username: userData.username,
+                      email: userData.email,
+                      library: { $elemMatch: {storyId: req.body.storyId} }
+                    }, 
+                    function(err, result){
+                      let obj = result.library.find(x => x.storyId==req.body.storyId);
+                      console.log(JSON.stringify(obj));
+                      res.json(JSON.stringify(obj));
+                   });
+                }
+              ); 
+            }else{
+              dbConnect
+              .collection("users")
+              .findOne(
+                {
+                  username: userData.username,
+                  email: userData.email,
+                  library: { $elemMatch: {storyId: req.body.storyId} }
+                }, 
+                function(err, result){
+                  let obj = result.library.find(x => x.storyId==req.body.storyId);
+                  console.log(JSON.stringify(obj));
+                  res.json(JSON.stringify(obj));
+               });
+            }
+          }
+        });
+        
+        
+        
+        
+});
+
+recordRoutes.route("/db/finishChapter").post(function (req, res) {
+  const dbConnect = dbo.getDb();
+  const userData = JSON.parse(req.body.user);
   
     dbConnect
-      .collection("stories")
-      .find({})
-      .toArray(function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      });
-});
-
-recordRoutes.route("/api/listAllUsers").get(function (req, res) {
-  let db_connect = getDb();
-  db_connect
     .collection("users")
-    .find({})
-    .toArray(function (err, result) {
-      if (err) throw err;
-      res.json(result);
-    });
+    .updateOne(
+      {
+        username: userData.username,
+        email: userData.email,
+        library: { $elemMatch: {storyId: req.body.storyId} }
+      },
+      { $set: 
+          {
+            "library.$.lastCompletedChapter": parseInt(req.body.chapterNumber),
+            "library.$.currentNode": 1
+          } 
+      },
+      function(err, result){
+        dbConnect
+        .collection("users")
+        .findOne(
+          {
+            username: userData.username,
+            email: userData.email,
+            library: { $elemMatch: {storyId: req.body.storyId} }
+          }, 
+          function(err, result){
+            let obj = result.library.find(x => x.storyId==req.body.storyId);
+            console.log(JSON.stringify(obj));
+            res.json(JSON.stringify(obj));
+          });
+      }
+    ); 
+      
 });
 
-// This section will help you get a single record by id
-recordRoutes.route("/api/story/:id").get(function (req, res) {
-  let db_connect = getDb();
-  let myquery = { id: req.params.id};
-  db_connect
-      .collection("stories")
-      .findOne(myquery, function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      });
+recordRoutes.route("/db/saveProgress").post(function (req, res) {
+  const dbConnect = dbo.getDb();
+  const userData = JSON.parse(req.body.user);
+  
+    dbConnect
+    .collection("users")
+    .updateOne(
+      {
+        username: userData.username,
+        email: userData.email,
+        library: { $elemMatch: {storyId: req.body.storyId} }
+      },
+      { $set:  
+          {
+            "library.$.currentNode": req.body.userCurrentNode
+          }
+      
+      }, 
+      function(err, result){
+        dbConnect
+        .collection("users")
+        .findOne(
+          {
+            username: userData.username,
+            email: userData.email,
+            library: { $elemMatch: {storyId: req.body.storyId} }
+          }, 
+          function(err, result){
+            let obj = result.library.find(x => x.storyId==req.body.storyId);
+            console.log(JSON.stringify(obj));
+            res.json(JSON.stringify(obj));
+          });
+      }
+    ); 
+      
 });
 
-recordRoutes.route("/api/play/:urlName/:chapterNumber").get(function (req, res) {
-    let db_connect = getDb();
-    let myquery = { 
-        urlName: req.params.urlName, 
-        number: req.params.chapterNumber
-    };
-    db_connect
-        .collection("chapters")
-        .findOne(myquery, function (err, result) {
-          if (err) throw err;
-          res.json(result);
-        });
-  });
+// recordRoutes.route("/api/listAllUsers").get(function (req, res) {
+//   let db_connect = getDb();
+//   db_connect
+//     .collection("users")
+//     .find({})
+//     .toArray(function (err, result) {
+//       if (err) throw err;
+//       res.json(result);
+//     });
+// });
+
+// // This section will help you get a single record by id
+// recordRoutes.route("/api/story/:id").get(function (req, res) {
+//   let db_connect = getDb();
+//   let myquery = { id: req.params.id};
+//   db_connect
+//       .collection("stories")
+//       .findOne(myquery, function (err, result) {
+//         if (err) throw err;
+//         res.json(result);
+//       });
+// });
+
+// recordRoutes.route("/api/play/:urlName/:chapterNumber").get(function (req, res) {
+//     let db_connect = getDb();
+//     let myquery = { 
+//         urlName: req.params.urlName, 
+//         number: req.params.chapterNumber
+//     };
+//     db_connect
+//         .collection("chapters")
+//         .findOne(myquery, function (err, result) {
+//           if (err) throw err;
+//           res.json(result);
+//         });
+//   });
 
   module.exports = recordRoutes;

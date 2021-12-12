@@ -5,23 +5,32 @@
 <div class="container-vn-kanan">
     <div class="flashcard-wrapper">
         <!-- isi flashcard taro bawah sini -->
-        
-            <div class="cardContainer inactive">
-                <div class="card">
-                    <div class="side frontside">
-                        <div class="cover-img" style="background-color: burlywood;">
-                            <h2>Penemu Nitroglycerin</h2>
-                        </div>
-                    </div>
-                    <div class="side backside">   
-                        <div class="desc">
-                            <h2>Ascanio Sobrero</h2>
-                        </div>
-                    </div>
-                </div>
-            </div> 
+        <script>
+            var flashcards=[];
+            function updateFlashcards(){
+                var html = '';
+                flashcards.forEach((card)=>{
+                    html+= '<div class="cardContainer inactive">';
+                    html+= '<div class="card">';
+                    html+= '    <div class="side frontside">';
+                    html+= '        <div class="cover-img" style="background-color: burlywood;">';
+                    html+= '            <h2 class="fc-title">'+card.title+'</h2>';
+                    html+= '        </div>';
+                    html+= '    </div>';
+                    html+= '    <div class="side backside">';
+                    html+= '        <div class="desc">';
+                    html+= '            <h2 class="fc-answer">'+card.answer+'</h2>';
+                    html+= '        </div>';
+                    html+= '    </div>';
+                    html+= '</div>';
+                });
+                $('.flashcard-wrapper').html(html);
+                return;
+            }
+            
+        </script>
 
-            <div class="cardContainer inactive">
+            <!-- <div class="cardContainer inactive">
                 <div class="card">
                     <div class="side frontside">
                         <div class="cover-img" style=""></div>
@@ -36,58 +45,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
-
-            <div class="cardContainer inactive">
-                <div class="card">
-                    <div class="side frontside">
-                        <div class="cover-img" style=""></div>
-                    </div>
-                    <div class="side backside">   
-                        <div class="info">
-                            <div class="desc">
-                                <h2>Nobel</h2>
-                                <h4></h4>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-
-            <div class="cardContainer inactive">
-                <div class="card">
-                    <div class="side frontside">
-                        <div class="cover-img" style=""></div>
-                    </div>
-                    <div class="side backside">   
-                        <div class="info">
-                            <div class="desc">
-                                <h2>Nobel</h2>
-                                <h4></h4>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-
-            <div class="cardContainer inactive">
-                <div class="card">
-                    <div class="side frontside">
-                        <div class="cover-img" style=""></div>
-                    </div>
-                    <div class="side backside">   
-                        <div class="info">
-                            <div class="desc">
-                                <h2>Nobel</h2>
-                                <h4></h4>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
+            </div>  -->
             
         
     </div>

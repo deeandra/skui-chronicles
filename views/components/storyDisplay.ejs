@@ -1,17 +1,26 @@
-<div class="cardContainer inactive">
-    <div class="card">
-        <div class="side front">
-            <div class="img" style=""></div>
-        </div>
-        <div class="side back">  
-            <div class="desc">
-                <h2>Nobel</h2>
-                <h4></h4>
-                <p></p>
-            </div>
-        </div>
+<% storyList.forEach(function(story){ %>
+    <div class="cardContainer inactive story<%= story.id %>">
+      <div class="card">
+          <div class="side front">
+              <div class="img" style="background: url('/public/assets/<%= story.coverImg %>') rgba(0, 0, 0, 0.7); background-blend-mode: multiply;"><h2><%= story.title %></h2></div>
+          </div>
+          <div class="side back">  
+              <div class="desc">
+                  <h4><%= story.desc %></h4>
+              </div>
+          </div>
+      </div>
     </div>
-</div> 
+    <span hidden class="url-name<%= story.id %>"><%= story.urlName %></span>
+<% }) %>
+
+<div class="modal" style="display: none;">
+  <br>
+	<p style="font-size: 16px; margin-bottom: 5px;">Do you want to restart this chapter?</p>
+	<a style="margin-right: 10px;" href="#" class="close">cancel</a>
+  <a class="restart">restart</a>
+</div>
+<div class="modal-bg" style="display: none;"></div>
    
  
 
@@ -27,6 +36,92 @@
   }
 
   cards.forEach(card => card.addEventListener('click', transition));
+</script>
+
+<script>
+  $(document).ready(function() {
+      var storyCount = '<%= storyList.length %>';
+      var loggedin = '<%= loggedin %>';
+      var currentStoryId = 1;
+      var userStories = '<%- userStories %>';
+      userStories = JSON.parse(userStories);
+      var libraryCount = userStories.length;
+      // var storyList = '<%- storyList %>';
+      // storyList = JSON.parse(storyList);
+      // console.log("hasl:"+storyList);
+      function changeStory(){
+        $(".left").css("opacity", 1).click(function (){
+          currentStoryId--;
+          changeStory();
+        });
+        $(".right").css("opacity", 1).click(function (){
+          currentStoryId++;
+          changeStory();
+        });
+        for(let i=1; i<=storyCount; i++){
+          $(".story"+i).hide(); 
+        }
+        $(".story"+currentStoryId).show();
+
+        if(currentStoryId == 1){
+          $(".left").css("opacity", 0).off();
+        }
+        if(currentStoryId == storyCount){
+          $(".right").css("opacity", 0).off();
+        }
+        $(".play-img").hide();
+        var status=false;
+        for(let j=0; j<libraryCount; j++){
+            if(userStories[j].storyId == currentStoryId){
+              if(userStories[j].lastCompletedChapter != undefined && userStories[j].lastCompletedChapter !=0){
+                let lastChp = userStories[j].lastCompletedChapter;
+                $(".play1").hide();
+                let currentChp = parseInt(lastChp)+1;
+                $(".play"+currentChp).show();
+                console.log("lastchp:"+lastChp+loggedin+currentChp);
+                var c = parseInt(lastChp)+2;
+                status = true;
+                while($(".chap"+c).length){
+                  $(".chap"+c).css("pointer-events", "none");
+                  c++;
+                }
+                for(let k=lastChp; k>0; k--){
+                    $("."+currentStoryId+"chap"+k).addClass("chapter-done").prop("onclick", null).off('click').click(function (){
+                      $('.modal').show();
+                      $('.modal-bg').show();
+                      let storyUrlName = $(".url-name"+currentStoryId).text();
+                      $('.restart').attr("href", "/play/"+storyUrlName+"/"+k);
+                      console.log("NAMA URL:", storyUrlName);
+                    });
+                }
+              }
+              // else{
+              //   $(".play1").show();
+              //   var c = 2;
+              //   while($(".chap"+c).length){
+              //     $(".chap"+c).css("pointer-events", "none");
+              //     c++;
+              //   }
+              // }
+            }
+        }
+        if(status==false){
+          $(".play1").show();
+              var c = 2;
+              while($(".chap"+c).length){
+                $(".chap"+c).css("pointer-events", "none");
+                c++;
+          }
+        }
+      }
+      $('.modal .close').click(function(){
+        $('.modal').hide();
+        $('.modal-bg').hide();
+      })
+      changeStory();
+      console.log("test");
+      console.log(userStories);
+  });
 </script>
 
 <!-- <div class="container-text-box">

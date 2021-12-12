@@ -1,29 +1,31 @@
-<div class="wrapper">
+<% storyList.forEach(function(story){ %>
+    <div class="wrapper story<%= story.id %>">
+        <% story.chapters.forEach(function(chapter){ %>
+            <div class = "button story<%= story.id %>">
+                <button class="menu-chap chap<%= chapter.chapterNumber %> <%= story.id %>chap<%= chapter.chapterNumber %>" onclick="location.href = '/play/<%= story.urlName %>/<%= chapter.chapterNumber %>'">
+                    <span class="span-chap<%= chapter.chapterNumber %>" style="font-weight: bold;">Chapter <%= chapter.chapterNumber %>
+                        <img class="play-img play<%= chapter.chapterNumber %>" src="public/images/play_button.png" width="20" height="20"></img>
+                    </span>
+                    <br/><%= chapter.chapterTitle %>
+                </button>
+            </div>
+        <% }) %>
+    </div>
+<% }) %>
+
+<!-- <div class="wrapper">
         <div class = "button">
             <button class="menu-chap chapter-done">
                 <span class='chap1' style="font-weight: bold;">Chapter 1</span>
                 <br/>The Beginning of Everything
             </button>
         </div>
-        <div class = "button">
-            <button class="menu-chap">
-                <span class='chap2' style="font-weight: bold;">Chapter 1</span>
-                <br/>The Beginning of Everything
-            </button>
-        </div>
-        <div class = "button"> 
-            <button class="menu-chap">
-                <span class='chap3' style="font-weight: bold;">Chapter 1</span>
-                <br/>The Beginning of Everything
-            </button>
-        </div>
-        <div class = "button"> 
-            <button class="menu-chap">
-                <span class='chap4' style="font-weight: bold;" >Chapter 1</span>
-                <br/>The Beginning of Everything
-            </button>
-        </div>
-</div>
-
+</div> -->
+<script>
+     $(document).ready(function() {
+        
+    
+     });
+</script>
 
 

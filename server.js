@@ -34,6 +34,15 @@ app.use(session(sess));
 app.use(function(req, res, next) {
     res.locals.loggedin = req.session.loggedin;
     res.locals.playerName = req.session.name;
+    res.locals.username = req.session.username;
+    res.locals.user = req.session.user;
+    if(req.session.userStories == undefined){
+      res.locals.userStories = "[]";
+    }else{
+      res.locals.userStories = req.session.userStories;
+      console.log("hasil:"+res.locals.userStories);
+    }
+    
     next();
 });
 
@@ -83,7 +92,16 @@ app.post('/editchp/:storyId/:chapterNumber', function(req, res) {
 });
 
 app.get('/stories', function(req, res) {
-    res.render('pages/stories');
+    const dbConnect = dbo.getDb();
+
+  dbConnect
+    .collection("stories")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.render('pages/stories', {'storyList': result});
+    });
+  
 });
 
 app.get('/about', function(req, res) {
@@ -109,6 +127,10 @@ app.post('/login', function(req, res) {
           req.session.loggedin = true;
           req.session.username = result.username;
           req.session.name = result.name;
+          req.session.user = JSON.stringify(result);
+          req.session.userStories = JSON.stringify(result['library']);
+          console.log(result['library']);
+          console.log("us::"+req.session.userStories);
 
           let returnTo = '/'
           if (req.session.returnTo) {
@@ -142,7 +164,13 @@ app.post('/register', function(req, res) {
 
     dbConnect
       .collection("users")
-      .insertOne(req.body)
+      .insertOne(req.body);
+    dbConnect
+      .collection("users")
+      .updateOne(req.body, 
+        { $set: {library: []} },
+        { upsert: true }
+      )
       .then(result => {
         res.redirect('/login')
       });
@@ -173,7 +201,12 @@ app.get('/play/:urlName/:chapterNumber', function(req, res) {
             .collection("chapters")
             .findOne(myquery, function (err, result) {
               if (err) throw err;
-              res.render('pages/game', { "chapter": result });
+              res.render('pages/game', { 
+                "chapter": result,
+                "storyId": getStoryId,
+                "urlName": req.params.urlName,
+                "chapterNumber": req.params.chapterNumber
+               });
         });
     });
 });
