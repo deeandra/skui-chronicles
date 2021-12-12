@@ -86,6 +86,7 @@ $(document).ready(function() {
         
         const thisNode = nodes[idNode-1];
         let isArray = $.isArray(thisNode.text);
+        
 
         while (elemenPilihan.firstChild){
             elemenPilihan.removeChild(elemenPilihan.firstChild)
@@ -126,11 +127,13 @@ $(document).ready(function() {
             });
             updateFlashcards();
             cetakNode(thisNode.next, 0);
+            return;
         }
         else if(thisNode.tipe == "cs"){
             $('.sm-location').text(thisNode.location);
             $('.sm-year').text(thisNode.year);
             cetakNode(thisNode.next, 0);
+            return;
         }
 
         if(thisNode.background){
@@ -165,7 +168,8 @@ $(document).ready(function() {
         if(thisNode.pilihan == undefined) {
             $('.next-button').show()
             $('.next-button').click(function() {
-                pindahNodeorIndeks(thisNode, iArrayTeks)
+                pindahNodeorIndeks(thisNode, iArrayTeks);
+                return;
             })
         }
         else {
@@ -175,12 +179,12 @@ $(document).ready(function() {
             $('#choices').show()
             thisNode.pilihan.forEach(option => {
                 if (validasiPilihan(option)) {
-                    const button = document.createElement('button')
-                    button.innerText = option.text
-                    console.log("create button")
-                    button.classList.add('menu-chap')
-                    button.addEventListener('click', () => prosesPilihan(option))
-                    $('#choices').append(button)
+                    const button = document.createElement('button');
+                    button.innerText = option.text;
+                    console.log("create button");
+                    button.classList.add('menu-chap');
+                    button.addEventListener('click', () => prosesPilihan(option));
+                    $('#choices').append(button);
                 }
             })
         }
@@ -192,7 +196,8 @@ $(document).ready(function() {
         let i = iArrayTeks;
         i++;
         if(isArray && i < thisNode.text.length){
-            cetakNode(thisNode.id, i)
+            cetakNode(thisNode.id, i);
+            return;
         }
         else{
             if(thisNode.next == undefined){
@@ -200,6 +205,7 @@ $(document).ready(function() {
             }
             userCurrentNode = thisNode.next;
             cetakNode(thisNode.next, 0);
+            return;
         }
     }
     
@@ -216,6 +222,7 @@ $(document).ready(function() {
         //set state akibat pilihan ini
         userCurrentNode = option.next;
         cetakNode(option.next, 0)
+        return;
     }
     
   mulaiGame();  

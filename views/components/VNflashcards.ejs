@@ -10,7 +10,7 @@
             function updateFlashcards(){
                 var html = '';
                 flashcards.forEach((card)=>{
-                    html+= '<div class="cardContainer inactive">';
+                    html+= '<div class="cardContainer inactive" style="z-index: 130;">';
                     html+= '<div class="card">';
                     html+= '    <div class="side frontside">';
                     html+= '        <div class="cover-img" style="background-color: burlywood;">';
@@ -25,6 +25,19 @@
                     html+= '</div>';
                 });
                 $('.flashcard-wrapper').html(html);
+
+                const cards = document.querySelectorAll('.card');
+  
+                function transition() {
+                if (this.classList.contains('active')) {
+                    this.classList.remove('active')
+                } else {
+                    this.classList.add('active');
+                }
+                }
+            
+                cards.forEach(card => card.addEventListener('click', transition));
+
                 return;
             }
             
@@ -52,19 +65,6 @@
 </div>
 </section> 
 
-<script>
-    const cards = document.querySelectorAll('.card');
-  
-    function transition() {
-      if (this.classList.contains('active')) {
-        this.classList.remove('active')
-      } else {
-        this.classList.add('active');
-      }
-    }
-  
-    cards.forEach(card => card.addEventListener('click', transition));
-  </script>
 
 <script>
     $(document).ready(function() {

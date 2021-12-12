@@ -9,9 +9,9 @@ dynamite[1] = {
     content: [
         {
             id: 1,
-            text: [ "The Explosive Origin of The Nobel Prizes", "Chapter 1: Ascanio Sobrero and The Discovery of Nitroglycerine"],
-            background:"/public/images/classroom.jpg",
-            tipe: "narasi",
+            tipe: "fc",
+            title: "Penemu Nitrogliserin",
+            answer: "Ascanio Sobrero",
             next: 2
         },
         {
@@ -21,7 +21,7 @@ dynamite[1] = {
             ],
             charaImg: "/public/images/cogan.png",
             nama: "Supervisor X",
-            tipe: "",
+            tipe: "dialog",
             next: 3
         },
         {
