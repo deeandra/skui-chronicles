@@ -42,7 +42,7 @@ prologue[1] = {
             text: [
                 " oh tidak! bagaimana ini, aku belum mendapatkan gaji tapi aku sudah membuat goresan di bajaj ini!"
             ],
-            charaImg: "/public/images/bicara.png",
+//             charaImg: "/public/images/bicara.png",
             nama: "Kamu",
             tipe: "",
             next: 6
@@ -60,7 +60,7 @@ prologue[1] = {
             text: [
                 " sungguh, ini adalah hari pertama dan hari terakhir ku bekerja hiks"
             ],
-            charaImg: "/public/images/sedih.png",
+//             charaImg: "/public/images/sedih.png",
             nama: "Kamu",
             next: 8
         },
@@ -90,9 +90,9 @@ prologue[1] = {
         {
             id: 11,
             text: [
-                " maaf, apakah kau adalah pemilik baja tersebut? aku ingin meminta maaf, aku terlalu gugup untuk membawa bajaj hingga akhirnya menabrak bajaj mewah itu :<"
+                " maaf, apakah kau adalah pemilik bajaj tersebut? aku ingin meminta maaf, aku terlalu gugup untuk membawa bajaj hingga akhirnya menabrak bajaj mewah itu :<"
             ],
-            charaImg: "/public/images/sedih.png",
+//             charaImg: "/public/images/sedih.png",
             nama: "Kamu",
             next: 12
         },
@@ -110,7 +110,7 @@ prologue[1] = {
             text: [
                 " oh tentu aku akan mengganti biaya perbaikannya, namun bisakah kau memberi keringanan seperti cicil 12 bulan?"
             ],
-            charaImg: "/public/images/sedih.png",
+//             charaImg: "/public/images/sedih.png",
             nama: "Kamu",
             next: 14
         },
@@ -144,7 +144,7 @@ prologue[1] = {
             text: [
                 " hiks, aku tidak bisa berkata apa2 lagi, baiklah tolong jelaskan dengan lebih lanjut apa maksudmu kembali ke masa lalu"
             ],
-            charaImg: "/public/images/sedih.png",
+//             charaImg: "/public/images/sedih.png",
             nama: "Kamu",
             next: 17
         },
@@ -162,7 +162,7 @@ prologue[1] = {
             text: [
                 "apakah ini seperti organisasi rahasia Men in White?"
             ],
-            charaImg: "/public/images/user-normal.png",
+//             charaImg: "/public/images/user-normal.png",
             nama: "Kamu",
             next: 19
         },
@@ -180,7 +180,7 @@ prologue[1] = {
             text: [
                 "WAHHH aku seperti spy!! apakah kita tidak akan mengubah masa depan nantinya?"
             ],
-            charaImg: "/public/images/user-normal.png",
+//             charaImg: "/public/images/user-normal.png",
             nama: "Kamu",
             next: 21
         },
@@ -198,7 +198,7 @@ prologue[1] = {
             text: [
                 " kau tahu, aku hanyalah supir bajaj, aku tidak berniat untuk mengerti tentang teori-teori tersebut, Jadi aku hanya mengiyakan saja hehehe"
             ],
-            charaImg: "/public/images/bicara.png",
+//             charaImg: "/public/images/bicara.png",
             nama: "Kamu",
             next: 23
         },
@@ -216,7 +216,7 @@ prologue[1] = {
             text: [
                 "gulp, baiklah aku akan berusaha dengan kekuatan bulan!"
             ],
-            charaImg: "/public/images/user-normal.png",
+//             charaImg: "/public/images/user-normal.png",
             nama: "Kamu",
             next: 25
         },
@@ -233,7 +233,7 @@ prologue[1] = {
             text: [
                 " jadi sekarang, kita akan ke masa lalu apa?"
             ],
-            charaImg: "/public/images/user-normal.png",
+//             charaImg: "/public/images/user-normal.png",
             nama: "Kamu",
             next: 27
         },
@@ -251,7 +251,7 @@ prologue[1] = {
             text: [
                 "hmm, apa maksudmu dinamit?"
             ],
-            charaImg: "/public/images/user-normal.png",
+//             charaImg: "/public/images/user-normal.png",
             nama: "Kamu",
             next: 29
         },
@@ -269,7 +269,7 @@ prologue[1] = {
             text: [
                 "oh tentu, karena aku menyuka lagu dynamite nanananaa"
             ],
-            charaImg: "/public/images/bicara.png",
+//             charaImg: "/public/images/bicara.png",
             nama: "Kamu",
             next: 31
         },
