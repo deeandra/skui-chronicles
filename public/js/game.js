@@ -17,7 +17,8 @@ $(document).ready(function() {
             chapterData = prologue[parseInt(chapterNumber)];
             break;
     }
-    const nodes = chapterData['content'];
+    var nodes = chapterData.content;
+    console.log(nodes);
 
     function dbStartStory(){
         $.ajax({  
@@ -41,7 +42,8 @@ $(document).ready(function() {
                     $('#container-display').css('background-image', 'url("' + userProgress.lastBg+ '")');
                     getFlashcards();
                     halamanAwal();
-                    cetakNode(parseInt(userCurrentNode), 0);
+                    return;
+                    
     
                 }else{  
                     console.log('some error occurred try again');  
@@ -71,8 +73,22 @@ $(document).ready(function() {
         return;
     }
     
-    function mulaiGame() {
-        dbStartStory();
+    async function mulaiGame() {
+        await dbStartStory();
+        await cetakNode(parseInt(userCurrentNode), 0);
+        var idNode = parseInt(userCurrentNode);
+        while (true){
+            $('#container-display').children().hide();
+            $('#choices').hide();
+
+            while (elemenPilihan.firstChild){
+                elemenPilihan.removeChild(elemenPilihan.firstChild)
+            }
+        
+            $('.btn-choices').remove();
+
+            const thisNode = nodes[idNode-1];
+        }
         return;
     }
     
@@ -95,7 +111,7 @@ $(document).ready(function() {
     }
     
     function cetakNode(idNode, iArrayTeks) {
-    try{
+    
         $('#container-display').children().hide();
         $('#choices').hide();
 
@@ -107,7 +123,7 @@ $(document).ready(function() {
 
         const thisNode = nodes[idNode-1];
         
-    if(thisNode.tipe){
+    
         if(thisNode.tipe == "fin"){
             //disini set last completed chapter jadi chapter ini
             $.ajax({  
@@ -149,11 +165,9 @@ $(document).ready(function() {
             cetakNode(thisNode.next, 0);
             return;
         }
-    }
-        if(thisNode.text){
-            let isArray = $.isArray(thisNode.text);
-        }
-        
+    
+        let isArray = $.isArray(thisNode.text);
+       
         if(thisNode.background){
             $('#container-display').css('background-image', 'url("' + thisNode.background+ '")');
             lastBg = thisNode.background;
@@ -163,17 +177,25 @@ $(document).ready(function() {
             $('.box-bubble').show();
             $('#text').show();
             if(thisNode.charaImg){
-                $('.box-chara').show().css('background-image', 'url("' + thisNode.charaImg + '")');
+                $('.box-chara').show().css('background-image', 'url("' + thisNode.charaImg + '")').css("opacity", 1);
                 $('.box-bubble').css("top", "0");
                 $('.box-bubble').css("transform", "translateY(0)");
             }
-            if(thisNode.tipe == "narasi" || !thisNode.nama){
+            if(thisNode.tipe == "n" || thisNode.tipe == "narasi" || !thisNode.nama){
                 $('.box-bubble').css("top", "50%");
                 $('.box-bubble').css("transform", "translateY(-50%)");
             }
             if(thisNode.nama){
                 $(".box-name").show();
                 $("#nama").text(thisNode.nama);
+                if(thisNode.nama == playername){
+
+                }
+                if(!thisNode.charaImg){
+                    $(".box-chara").show().css("opacity", 0);
+                } 
+                $('.box-bubble').css("top", "0");
+                $('.box-bubble').css("transform", "translateY(0)");
             }
             if(isArray){
                 $('#text').text(thisNode.text[iArrayTeks]) 
@@ -205,7 +227,7 @@ $(document).ready(function() {
                 }
             })
         }
-    }catch{}
+    
         return;
     }
     

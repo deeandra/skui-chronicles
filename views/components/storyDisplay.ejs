@@ -44,19 +44,22 @@
       var loggedin = '<%= loggedin %>';
       var currentStoryId = 1;
       var userStories = '<%- userStories %>';
-      userStories = JSON.parse(userStories);
+      if(userStories != "" || userStories!=null){
+        userStories = JSON.parse(userStories);
+      }
+      
       var libraryCount = userStories.length;
-      // var storyList = '<%- storyList %>';
-      // storyList = JSON.parse(storyList);
-      // console.log("hasl:"+storyList);
+
       function changeStory(){
         $(".left").css("opacity", 1).click(function (){
           currentStoryId--;
           changeStory();
+          return;
         });
         $(".right").css("opacity", 1).click(function (){
           currentStoryId++;
           changeStory();
+          return;
         });
         for(let i=1; i<=storyCount; i++){
           $(".story"+i).hide(); 
@@ -114,7 +117,9 @@
                 c++;
           }
         }
+        return;
       }
+      
       $('.modal .close').click(function(){
         $('.modal').hide();
         $('.modal-bg').hide();

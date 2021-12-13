@@ -34,7 +34,12 @@ app.use(session(sess));
 app.use(function(req, res, next) {
     res.locals.loggedin = req.session.loggedin;
     res.locals.user = req.session.user;
-    res.locals.userStories = req.session.userStories;
+    if(req.session.userStories != null || req.session.userStories != undefined){
+      res.locals.userStories = req.session.userStories;
+    }else{
+      res.locals.userStories = '[]';
+    }
+    
     
     next();
 });
