@@ -42,8 +42,7 @@ $(document).ready(function() {
                     $('#container-display').css('background-image', 'url("' + userProgress.lastBg+ '")');
                     getFlashcards();
                     halamanAwal();
-                    return;
-                    
+                    cetakNode(parseInt(userCurrentNode), 0);
     
                 }else{  
                     console.log('some error occurred try again');  
@@ -73,22 +72,8 @@ $(document).ready(function() {
         return;
     }
     
-    async function mulaiGame() {
-        await dbStartStory();
-        await cetakNode(parseInt(userCurrentNode), 0);
-        var idNode = parseInt(userCurrentNode);
-        while (true){
-            $('#container-display').children().hide();
-            $('#choices').hide();
-
-            while (elemenPilihan.firstChild){
-                elemenPilihan.removeChild(elemenPilihan.firstChild)
-            }
-        
-            $('.btn-choices').remove();
-
-            const thisNode = nodes[idNode-1];
-        }
+    function mulaiGame() {
+        dbStartStory();
         return;
     }
     
@@ -189,7 +174,7 @@ $(document).ready(function() {
                 $(".box-name").show();
                 $("#nama").text(thisNode.nama);
                 if(thisNode.nama == playername){
-
+                    
                 }
                 if(!thisNode.charaImg){
                     $(".box-chara").show().css("opacity", 0);
