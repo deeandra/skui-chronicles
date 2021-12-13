@@ -13,6 +13,11 @@
     </div>
     <div id="left-block"><%- include('../components/loginForm'); %></div>
     <div id="right-block"><%- include('../components/loginFlashlight'); %></div>
+    <% try{if(msg){ %>
+        <script>
+            alert('<%= msg %>');
+        </script>
+    <% }}catch{} %>
 </div>
 </div>
 <%- include('../components/keyboardLogin'); %>

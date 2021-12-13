@@ -8,11 +8,16 @@
             <li>
                 <a href="/stories" class="nav-link">Stories</a>
             </li>
-            <li>
-                <% if (loggedin==true) { %>
+            
+            <% if (loggedin==true) { %>
+                <li>
                     <a href="/logout" class="nav-link">Log Out</a>
-                <% } %>
-            </li>
+                </li>
+                <li>
+                    <a href="/profile" class="nav-link">Profile</a>
+                </li>
+            <% } %>
+            
         </div>
         
         <div class="hamburger">

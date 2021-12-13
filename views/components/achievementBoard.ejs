@@ -1,3 +1,8 @@
+<!-- <script>
+    let percent = [];
+    let percentString = [];
+</script> -->
+
 <div class="container">
     <div class="achievement">
         <div class="title">
@@ -6,25 +11,44 @@
         <div class="top-symbol">
             <img src="public/images/simbol.png">
         </div>
-        <div class="progress">
-            <p>The History of Something <svg src="public/images/book.svg" width="5" height="5"></svg></p>
-            <span class="bar"><span class="topic">
+        <% JSON.parse(board).forEach(function (b) { %>
+            <div class="progress">
+                <p><%= b.title %></p>
+                <span class="bar"><span class="topic<%= b.storyId %>">
+                </span>
             </span>
-             
-        </span>
-        <span class="chapters">2 out of 3 chapter completed </span>  
-        <hr>       
-        </div>
-        <div class="progress">
-            <p>The History of Something</p>
-            <span class="bar"><span class="topic">
-                 
-            </span>
-             
-        </span>
-        <span class="chapters">2 out of 3 chapter completed </span>  
-           
-        </div>
+            <span class="chapters"><%= b.chpProgress %> out of <%= b.chpTotal %> chapter completed </span> 
+            <div class="btn-wrapper">
+                <!-- <input class="menu-button" id="flashcards<%= b.storyId %>" type="submit" value="Flashcards"></input> -->
+                <input class="menu-button" id="dossier<%= b.storyId %>" type="submit" value="Dossier"></input>
+            </div> 
+            
+            <hr>
+
+            <section class="frame" id="fr<%= b.storyId %>" style="display: none;">
+                <iframe id="iframe-<%= b.urlName %>" src="/public/booklets/<%= b.urlName %>.html" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:auto; z-index:999;">
+                    Your browser doesn't support iframes
+                </iframe>
+            </section>
+
+            <script>
+                // percent[parseInt('<%= b.storyId %>')]=(parseInt('<%= b.chpProgress %>')/parseInt('<%= b.chpTotal %>'))*100;
+                // percentString[parseInt('<%= b.storyId %>')] = percent+"%";
+                
+                $("#dossier<%= b.storyId %>").click(function () {
+                    $(".frame").hide();
+                    $("#fr<%= b.storyId %>").show();
+                });
+                $.keyframe.define([{
+                    name: "kf<%= b.storyId %>",
+                    '0%': {'width': "0%"},
+                    '100%': {'width': (parseInt('<%= b.chpProgress %>')/parseInt('<%= b.chpTotal %>'))*100+"%"}
+                }]);
+                $(".topic<%= b.storyId %>").css({width: (parseInt('<%= b.chpProgress %>')/parseInt('<%= b.chpTotal %>'))*100+"%", animation: "kf<%= b.storyId %> 2s"});
+                // $(".topic<%= b.storyId %>").animate({width: percentString});
+            </script>
+
+        <% }) %>
        
         
          <div class="down-symbol">
@@ -32,3 +56,11 @@
         </div>
     </div>
 </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("hr").eq(parseInt('<%= JSON.parse(board).length %>')-1).hide();
+        $(".frame").hide();
+    });
+</script>

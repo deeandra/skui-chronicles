@@ -15,3 +15,8 @@
         <p>already have an account? <a class="sign-in" href="/login">log in please</a></p>
     </div>
 </div>
+<% try{if(msg){ %>
+    <script>
+        alert('<%= msg %>');
+    </script>
+<% }}catch{} %>

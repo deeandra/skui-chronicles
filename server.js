@@ -113,7 +113,7 @@ app.post('/login', function(req, res) {
       .findOne({$or: [{email: req.body.identifier}, {username: req.body.identifier}]}, function (err, result) {
         if (err) throw err;
         if(result===null){
-          res.send('Account doesn\'t exist'+req.body.identifier);
+          res.render('pages/login', {'msg': 'Account does not exist'});
           return;
         }
         else if (result.password==req.body.password){
@@ -133,7 +133,7 @@ app.post('/login', function(req, res) {
           return;
         }
         else{
-          res.send('Incorrect Password!');
+          res.render('pages/login', {'msg': 'Incorrect Password'});
           return;
         }
       });
@@ -152,19 +152,41 @@ app.get('/register', function(req, res) {
 
 app.post('/register', function(req, res) {
     const dbConnect = dbo.getDb();
-
     dbConnect
       .collection("users")
-      .insertOne(req.body);
-    dbConnect
-      .collection("users")
-      .updateOne(req.body, 
-        { $set: {library: []} },
-        { upsert: true }
-      )
-      .then(result => {
-        res.redirect('/login')
+      .findOne({username: req.body.username}, function (err, result) {
+        if (err) throw err;
+        if(result==null){
+          dbConnect
+          .collection("users")
+          .findOne({email: req.body.email}, function (err, result) {
+            if (err) throw err;
+            if(result==null){
+              dbConnect
+                .collection("users")
+                .insertOne(req.body);
+              dbConnect
+                .collection("users")
+                .updateOne(req.body, 
+                  { $set: {library: []} },
+                  { upsert: true }
+                )
+                .then(result => {
+                  res.redirect('/login')
+                });
+              return;
+            }
+            else{
+              res.render('pages/register', {'msg': 'Email is already used by another account'});
+            }
+          });
+          return;
+        }
+        else{
+          res.render('pages/register', {'msg': 'Username is taken'});
+        }
       });
+    
 });
 
 app.get('/play/:urlName/:chapterNumber', function(req, res) {
@@ -183,23 +205,71 @@ app.get('/play/:urlName/:chapterNumber', function(req, res) {
       .collection("stories")
       .findOne(myquery, function (err, result) {
         if (err) throw err;
-        getStoryId = result["id"];
-        myquery = { 
-          storyId: getStoryId, 
-          number: req.params.chapterNumber
-        };
-        dbConnect
-            .collection("chapters")
-            .findOne(myquery, function (err, result) {
-              if (err) throw err;
-              res.render('pages/game', { 
-                "chapter": result,
-                "storyId": getStoryId,
-                "urlName": req.params.urlName,
-                "chapterNumber": req.params.chapterNumber
-               });
-        });
+        if(result){
+          getStoryId = result["id"];
+          myquery = { 
+            storyId: getStoryId, 
+            number: req.params.chapterNumber
+          };
+          dbConnect
+              .collection("chapters")
+              .findOne(myquery, function (err, result) {
+                if (err) throw err;
+                res.render('pages/game', { 
+                  "chapter": result,
+                  "storyId": getStoryId,
+                  "urlName": req.params.urlName,
+                  "chapterNumber": req.params.chapterNumber
+                 });
+          });
+        } 
     });
+});
+
+app.get('/profile', function(req, res) {
+  if(req.session.loggedin != true){
+    req.session.returnTo = `/play/${req.params.urlName}/${req.params.chapterNumber}`;
+    res.redirect('/login');
+    return;
+  }
+
+  const dbConnect = dbo.getDb();
+
+  dbConnect
+    .collection("stories")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      let stories = JSON.stringify(result);
+      dbConnect
+      .collection("users")
+      .findOne({
+        username: req.session.username
+        }, 
+        function (err, result) {
+          if (err) throw err;
+          let userLib = JSON.stringify(result["library"]);
+          let userLibArray = JSON.parse(userLib);
+          let storiesArray = JSON.parse(stories);
+          let board = [];
+          for(let i=0; i<storiesArray.length; i++){
+            let s = userLibArray.find(u => u.storyId==storiesArray[i].id);
+            if(s!=null){
+              board.push({
+                storyId: s.storyId,
+                title: storiesArray[i].title,
+                chpProgress: s.lastCompletedChapter,
+                urlName: storiesArray[i].urlName,
+                chpTotal: storiesArray[i].chapters.length
+              })
+            }
+          }
+          res.render('pages/dashboard', { 
+            "board": JSON.stringify(board)
+           });
+        });
+      });
+
 });
 
 app.listen(port, function() {

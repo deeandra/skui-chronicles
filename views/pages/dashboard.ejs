@@ -1,1 +1,20 @@
-<meta name="theme-color" content="#5d001f">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../components/head'); %>
+    <meta name="theme-color" content="#5d001f">
+    <link rel="stylesheet" type="text/css" href="/public/css/styleAchievement.css"/>
+    <!-- <script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script> -->
+    <script src='/public/js/jquery.keyframes.js'></script>
+</head>
+<body>
+<div class="block-container">
+<div class="blocks">
+    <div id="navbar">
+        <%- include('../components/navbar'); %>
+    </div>
+    <%- include('../components/achievementBoard', {"board": board}); %>
+</div>
+</div>
+</body>
+</html>
