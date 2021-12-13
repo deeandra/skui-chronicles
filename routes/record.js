@@ -62,7 +62,7 @@ recordRoutes.route("/db/startStory").post(function (req, res) {
             );
           }else{
             let obj = result.library.find(x => x.storyId==req.body.storyId);
-            if(parseInt(obj.lastchp)>=parseInt(req.body.chapterNumber)){
+            if(parseInt(obj.lastCompletedChapter)>=parseInt(req.body.chapterNumber)){
               var filtered = obj.states.filter(function(value, index, arr){ 
                 return parseInt(value.origin) <  parseInt(req.body.chapterNumber);
               });
