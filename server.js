@@ -226,7 +226,7 @@ app.get('/play/:urlName/:chapterNumber', function(req, res) {
     });
 });
 
-app.get('/profile', function(req, res) {
+app.get('/dashboard', function(req, res) {
   if(req.session.loggedin != true){
     req.session.returnTo = `/play/${req.params.urlName}/${req.params.chapterNumber}`;
     res.redirect('/login');

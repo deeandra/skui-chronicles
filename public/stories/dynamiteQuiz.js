@@ -1,3 +1,8 @@
+var prologue=[];
+prologue[0]={};
+prologue[1]={content: []};
+prologue[2]={content: []};
+
 var dynamite=[];
 dynamite[0] = {};
 dynamite[1] = {

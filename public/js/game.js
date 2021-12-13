@@ -95,12 +95,9 @@ $(document).ready(function() {
     }
     
     function cetakNode(idNode, iArrayTeks) {
+    try{
         $('#container-display').children().hide();
         $('#choices').hide();
-        
-        const thisNode = nodes[idNode-1];
-        let isArray = $.isArray(thisNode.text);
-        
 
         while (elemenPilihan.firstChild){
             elemenPilihan.removeChild(elemenPilihan.firstChild)
@@ -108,6 +105,9 @@ $(document).ready(function() {
     
         $('.btn-choices').remove();
 
+        const thisNode = nodes[idNode-1];
+        
+    if(thisNode.tipe){
         if(thisNode.tipe == "fin"){
             //disini set last completed chapter jadi chapter ini
             $.ajax({  
@@ -149,7 +149,11 @@ $(document).ready(function() {
             cetakNode(thisNode.next, 0);
             return;
         }
-
+    }
+        if(thisNode.text){
+            let isArray = $.isArray(thisNode.text);
+        }
+        
         if(thisNode.background){
             $('#container-display').css('background-image', 'url("' + thisNode.background+ '")');
             lastBg = thisNode.background;
@@ -201,6 +205,7 @@ $(document).ready(function() {
                 }
             })
         }
+    }catch{}
         return;
     }
     

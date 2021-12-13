@@ -70,6 +70,7 @@
           $(".right").css("opacity", 0).off();
         }
         $(".play-img").hide();
+        $(".menu-chap").css("pointer-events", "auto");
         var status=false;
         for(let j=0; j<libraryCount; j++){
             if(userStories[j].storyId == currentStoryId){
